@@ -1,96 +1,444 @@
-<ol class="publications">
-  <li>
-    <h3 class="publication-title">
-      <a href="https://arxiv.org/abs/2607.28323">
-        Optimal Execution with Passive Market Impact
-      </a>
-    </h3>
-    <p class="authors">
-      With Alexander Barzykin, Eyal Neuman and Sturmius Tuschmann.
-    </p>
-    <div class="publication-details">
-      <span>Preprint, 2026</span>
-      <a href="https://arxiv.org/abs/2607.28323">arXiv</a>
-      <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7147361">
-        SSRN
-      </a>
-    </div>
-  </li>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <li>
-    <h3 class="publication-title">
-      <a href="https://arxiv.org/abs/2606.06413">
-        Competition in Dealer Markets with Internalisation
-        and Externalisation
-      </a>
-    </h3>
-    <p class="authors">
-      With Eyal Neuman.
-    </p>
-    <div class="publication-details">
-      <span>Preprint, 2026</span>
-      <a href="https://arxiv.org/abs/2606.06413">arXiv</a>
-      <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6844540">
-        SSRN
-      </a>
-    </div>
-  </li>
+  <title>Robert Boyce | Mathematical Finance</title>
+  <meta name="description"
+        content="Robert Boyce, PhD candidate in mathematical finance at Imperial College London. Research, publications and CV.">
 
-  <li>
-    <h3 class="publication-title">
-      <a href="https://www.risk.net/cutting-edge/7963389/fx-market-making-with-internal-liquidity">
-        FX Market Making with Internal Liquidity
-      </a>
-    </h3>
-    <p class="authors">
-      With Alexander Barzykin and Eyal Neuman.
-    </p>
-    <div class="publication-details">
-      <span><em>Risk.net, Cutting Edge</em>, 2026</span>
-      <a href="https://www.risk.net/cutting-edge/7963389/fx-market-making-with-internal-liquidity">
-        Article
-      </a>
-      <a href="https://arxiv.org/abs/2512.04603">arXiv</a>
-      <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5859484">
-        SSRN
-      </a>
-    </div>
-  </li>
+  <style>
+    :root {
+      --text: #252b32;
+      --muted: #606974;
+      --accent: #245d79;
+      --border: #e1e5e8;
+    }
 
-  <li>
-    <h3 class="publication-title">
-      <a href="https://doi.org/10.1137/24M1679811">
-        Market Making with Exogenous Competition
-      </a>
-    </h3>
-    <p class="authors">
-      With Martin Herdegen and Leandro Sánchez-Betancourt.
-    </p>
-    <div class="publication-details">
-      <span>
-        <em>SIAM Journal on Financial Mathematics</em>,
-        16(2), 692–706, 2025
-      </span>
-      <a href="https://doi.org/10.1137/24M1679811">Article</a>
-      <a href="https://arxiv.org/abs/2407.17393">arXiv</a>
-    </div>
-  </li>
+    * {
+      box-sizing: border-box;
+    }
 
-  <li>
-    <h3 class="publication-title">
-      <a href="https://arxiv.org/abs/2407.04510">
-        Unwinding Toxic Flow with Partial Information
-      </a>
-    </h3>
-    <p class="authors">
-      With Alexander Barzykin and Eyal Neuman.
-    </p>
-    <div class="publication-details">
-      <span>Preprint, 2024 &middot; Revised 2026</span>
-      <a href="https://arxiv.org/abs/2407.04510">arXiv</a>
-      <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4885957">
-        SSRN
-      </a>
-    </div>
-  </li>
-</ol>
+    body {
+      margin: 0;
+      background: #fff;
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   Arial, sans-serif;
+      font-size: 17px;
+      line-height: 1.75;
+    }
+
+    .page {
+      width: min(100% - 48px, 940px);
+      margin: 0 auto;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 4px;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 5px;
+      border-radius: 2px;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 24px;
+      padding: 8px 16px;
+      background: #fff;
+      z-index: 10;
+    }
+
+    .skip-link:focus {
+      top: 12px;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 28px;
+      padding: 27px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 15px;
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    .intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 200px;
+      align-items: center;
+      gap: 64px;
+      padding: 64px 0 58px;
+    }
+
+    h1, h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 400;
+      line-height: 1.2;
+    }
+
+    h1 {
+      margin: 0 0 20px;
+      font-size: clamp(36px, 6vw, 49px);
+      letter-spacing: -1px;
+    }
+
+    h2 {
+      margin: 0 0 24px;
+      font-size: 29px;
+    }
+
+    p {
+      margin: 0 0 18px;
+    }
+
+    .bio {
+      max-width: 540px;
+      font-size: 19px;
+    }
+
+    .profile-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 24px;
+      margin-top: 26px;
+      font-size: 15px;
+    }
+
+    .portrait {
+      position: relative;
+      display: grid;
+      place-items: center;
+      width: 200px;
+      height: 240px;
+      overflow: hidden;
+      border-radius: 4px;
+      background: #edf1f3;
+      color: #758592;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 48px;
+    }
+
+    .portrait img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    .section {
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+      scroll-margin-top: 24px;
+    }
+
+    .research-text {
+      max-width: 760px;
+    }
+
+    .publications {
+      margin: 0;
+      padding-left: 23px;
+    }
+
+    .publications li {
+      padding-left: 10px;
+      margin-bottom: 30px;
+    }
+
+    .publications li:last-child {
+      margin-bottom: 0;
+    }
+
+    .publications li::marker {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .publication-title {
+      margin: 0 0 5px;
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+
+    .publication-title a {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .publication-title a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+
+    .authors {
+      margin: 0 0 4px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .publication-details {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    footer {
+      margin-top: 24px;
+      padding: 24px 0 36px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 620px) {
+      .page {
+        width: min(100% - 40px, 940px);
+      }
+
+      nav {
+        gap: 10px 22px;
+        font-size: 14px;
+      }
+
+      .intro {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 40px 0;
+      }
+
+      .portrait {
+        width: 160px;
+        height: 190px;
+      }
+
+      .bio {
+        font-size: 18px;
+      }
+
+      .section {
+        padding: 32px 0;
+      }
+
+      h2 {
+        font-size: 26px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="page">
+    <header>
+      <nav aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a href="#publications">Publications</a>
+        <a href="cv.pdf">CV</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="intro" id="about" aria-labelledby="name">
+        <div>
+          <h1 id="name">Robert Boyce</h1>
+
+          <!-- Edit your biography here. -->
+          <p class="bio">
+            I am a PhD candidate in mathematical finance at
+            Imperial College London.
+          </p>
+
+          <div class="profile-links">
+            <!-- Upload your CV as cv.pdf. -->
+            <a href="cv.pdf">Curriculum vitae</a>
+
+            <!-- Replace YOUR_SCHOLAR_ID with your profile ID. -->
+            <a href="https://scholar.google.com/citations?user=YOUR_SCHOLAR_ID">
+              Google Scholar
+            </a>
+
+            <a href="https://www.linkedin.com/in/robert-boyce-392546171/">
+              LinkedIn
+            </a>
+          </div>
+        </div>
+
+        <!-- Upload your photo as portrait.jpg. -->
+        <div class="portrait">
+          <span aria-hidden="true">RB</span>
+          <img
+            src="portrait.jpg"
+            alt="Robert Boyce"
+            width="200"
+            height="240"
+            onerror="this.hidden = true;"
+          >
+        </div>
+      </section>
+
+      <section class="section" id="research"
+               aria-labelledby="research-heading">
+        <h2 id="research-heading">Research</h2>
+
+        <!-- Edit your research summary here. -->
+        <div class="research-text">
+          <p>
+            My research interests include market microstructure
+            and optimal trading, studied with stochastic control
+            and game theory, with the aim of providing insights
+            to market participants, regulators, and academics.
+          </p>
+        </div>
+      </section>
+
+      <section class="section" id="publications"
+               aria-labelledby="publications-heading">
+        <h2 id="publications-heading">Publications &amp; preprints</h2>
+
+        <ol class="publications">
+          <li>
+            <h3 class="publication-title">
+              <a href="https://arxiv.org/abs/2607.28323">
+                Optimal Execution with Passive Market Impact
+              </a>
+            </h3>
+
+            <p class="authors">
+              With Alexander Barzykin, Eyal Neuman and
+              Sturmius Tuschmann.
+            </p>
+
+            <div class="publication-details">
+              <span>Preprint, 2026</span>
+              <a href="https://arxiv.org/abs/2607.28323">arXiv</a>
+              <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7147361">
+                SSRN
+              </a>
+            </div>
+          </li>
+
+          <li>
+            <h3 class="publication-title">
+              <a href="https://arxiv.org/abs/2606.06413">
+                Competition in Dealer Markets with Internalisation
+                and Externalisation
+              </a>
+            </h3>
+
+            <p class="authors">
+              With Eyal Neuman.
+            </p>
+
+            <div class="publication-details">
+              <span>Preprint, 2026</span>
+              <a href="https://arxiv.org/abs/2606.06413">arXiv</a>
+              <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6844540">
+                SSRN
+              </a>
+            </div>
+          </li>
+
+          <li>
+            <h3 class="publication-title">
+              <a href="https://www.risk.net/cutting-edge/7963389/fx-market-making-with-internal-liquidity">
+                FX Market Making with Internal Liquidity
+              </a>
+            </h3>
+
+            <p class="authors">
+              With Alexander Barzykin and Eyal Neuman.
+            </p>
+
+            <div class="publication-details">
+              <span><em>Risk.net, Cutting Edge</em>, 2026</span>
+              <a href="https://www.risk.net/cutting-edge/7963389/fx-market-making-with-internal-liquidity">
+                Article
+              </a>
+              <a href="https://arxiv.org/abs/2512.04603">arXiv</a>
+              <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5859484">
+                SSRN
+              </a>
+            </div>
+          </li>
+
+          <li>
+            <h3 class="publication-title">
+              <a href="https://doi.org/10.1137/24M1679811">
+                Market Making with Exogenous Competition
+              </a>
+            </h3>
+
+            <p class="authors">
+              With Martin Herdegen and Leandro Sánchez-Betancourt.
+            </p>
+
+            <div class="publication-details">
+              <span>
+                <em>SIAM Journal on Financial Mathematics</em>,
+                16(2), 692–706, 2025
+              </span>
+              <a href="https://doi.org/10.1137/24M1679811">Article</a>
+              <a href="https://arxiv.org/abs/2407.17393">arXiv</a>
+            </div>
+          </li>
+
+          <li>
+            <h3 class="publication-title">
+              <a href="https://arxiv.org/abs/2407.04510">
+                Unwinding Toxic Flow with Partial Information
+              </a>
+            </h3>
+
+            <p class="authors">
+              With Alexander Barzykin and Eyal Neuman.
+            </p>
+
+            <div class="publication-details">
+              <span>Preprint, 2024 &middot; Revised 2026</span>
+              <a href="https://arxiv.org/abs/2407.04510">arXiv</a>
+              <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4885957">
+                SSRN
+              </a>
+            </div>
+          </li>
+        </ol>
+      </section>
+    </main>
+
+    <footer>
+      Robert Boyce &middot; Imperial College London
+    </footer>
+  </div>
+</body>
+</html>
