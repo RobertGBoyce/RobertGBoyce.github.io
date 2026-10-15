@@ -6,7 +6,7 @@
 
   <title>Robert Boyce | Mathematical Finance</title>
   <meta name="description"
-        content="Robert Boyce, PhD candidate in mathematical finance at Imperial College London. Research, publications and CV.">
+        content="Robert Boyce, PhD candidate in mathematical finance at Imperial College London. Research, publications, talks and CV.">
 
   <style>
     :root {
@@ -211,6 +211,28 @@
       font-size: 14px;
     }
 
+    .talks {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .talks li {
+      display: grid;
+      grid-template-columns: 95px minmax(0, 1fr);
+      gap: 24px;
+      padding: 12px 0;
+      line-height: 1.6;
+    }
+
+    .talks time {
+      padding-top: 2px;
+      color: var(--muted);
+      font-size: 14px;
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+
     footer {
       margin-top: 24px;
       padding: 24px 0 36px;
@@ -225,7 +247,7 @@
       }
 
       nav {
-        gap: 10px 22px;
+        gap: 10px 20px;
         font-size: 14px;
       }
 
@@ -251,6 +273,12 @@
       h2 {
         font-size: 26px;
       }
+
+      .talks li {
+        grid-template-columns: 1fr;
+        gap: 3px;
+        padding: 13px 0;
+      }
     }
   </style>
 </head>
@@ -264,6 +292,7 @@
         <a href="#about">About</a>
         <a href="#research">Research</a>
         <a href="#publications">Publications</a>
+        <a href="#talks">Talks</a>
         <a href="cv.pdf">CV</a>
       </nav>
     </header>
@@ -273,18 +302,15 @@
         <div>
           <h1 id="name">Robert Boyce</h1>
 
-          <!-- Edit your biography here. -->
           <p class="bio">
             I am a PhD candidate in mathematical finance at
             Imperial College London.
           </p>
 
           <div class="profile-links">
-            <!-- Upload your CV as cv.pdf. -->
             <a href="cv.pdf">Curriculum vitae</a>
 
-            <!-- Replace YOUR_SCHOLAR_ID with your profile ID. -->
-            <a href="https://scholar.google.com/citations?user=YOUR_SCHOLAR_ID">
+            <a href="https://scholar.google.com/citations?user=kV6VBPkAAAAJ&amp;hl=en">
               Google Scholar
             </a>
 
@@ -311,7 +337,6 @@
                aria-labelledby="research-heading">
         <h2 id="research-heading">Research</h2>
 
-        <!-- Edit your research summary here. -->
         <div class="research-text">
           <p>
             My research interests include market microstructure
@@ -433,6 +458,135 @@
             </div>
           </li>
         </ol>
+      </section>
+
+      <section class="section" id="talks"
+               aria-labelledby="talks-heading">
+        <h2 id="talks-heading">Talks</h2>
+
+        <ul class="talks" role="list">
+          <li>
+            <time datetime="2026-09">Sep 2026</time>
+            <span>UCSB Financial Mathematics Seminar</span>
+          </li>
+
+          <li>
+            <time datetime="2026-09">Sep 2026</time>
+            <span>
+              UCLA Mathematical and Statistical Finance Seminar
+            </span>
+          </li>
+
+          <li>
+            <time datetime="2026-09">Sep 2026</time>
+            <span>
+              Columbia University Mathematical Finance Seminar
+            </span>
+          </li>
+
+          <li>
+            <time datetime="2026-07">Jul 2026</time>
+            <span>
+              13th Bachelier World Congress,
+              University of Bologna
+            </span>
+          </li>
+
+          <li>
+            <time datetime="2026-06">Jun 2026</time>
+            <span>
+              ETH – Hong Kong – Imperial Workshop on
+              Mathematical Finance, ETH Zurich
+            </span>
+          </li>
+
+          <li>
+            <time datetime="2026-03">Mar 2026</time>
+            <span>
+              XXVII Workshop on Quantitative Finance,
+              University of Bergamo
+            </span>
+          </li>
+
+          <li>
+            <time datetime="2025-11">Nov 2025</time>
+            <span>
+              Mathematics of Random Systems CDT Workshop,
+              Imperial College London
+            </span>
+          </li>
+
+          <li>
+            <time datetime="2025-07">Jul 2025</time>
+            <span>
+              SIAM Conference on Financial Mathematics
+              and Engineering (FM25), Miami
+            </span>
+          </li>
+
+          <li>
+            <time datetime="2025-04">Apr 2025</time>
+            <span>
+              ETH – Hong Kong – Imperial Mathematical Finance
+              Workshop, Hong Kong Polytechnic University
+            </span>
+          </li>
+
+          <li>
+            <time datetime="2025-01">Jan 2025</time>
+            <span>
+              Dolomites Winter School on Optimal Transport
+            </span>
+          </li>
+
+          <li>
+            <time datetime="2025-01">Jan 2025</time>
+            <span>
+              London–Oxford–Warwick Mathematical Finance
+              Workshop, University of Oxford
+            </span>
+          </li>
+
+          <li>
+            <time datetime="2024-11">Nov 2024</time>
+            <span>
+              Algo-trading &amp; DEFI Methods and Technologies
+              Workshop, Politecnico di Milano
+            </span>
+          </li>
+
+          <li>
+            <time datetime="2024-09">Sep 2024</time>
+            <span>
+              7th Berlin Workshop on Mathematical Finance
+              for Young Researchers
+            </span>
+          </li>
+
+          <li>
+            <time datetime="2024-07">Jul 2024</time>
+            <span>
+              12th Bachelier World Congress,
+              Fundação Getulio Vargas, Rio de Janeiro
+            </span>
+          </li>
+
+          <li>
+            <time datetime="2024-06">Jun 2024</time>
+            <span>
+              ETH – Hong Kong – Imperial Mathematical Finance
+              Workshop, Imperial College London
+            </span>
+          </li>
+
+          <li>
+            <time datetime="2024-04">Apr 2024</time>
+            <span>
+              Mathematics of Random Systems CDT Spring Retreat,
+              Missenden Abbey
+            </span>
+          </li>
+        </ul>
       </section>
     </main>
 
