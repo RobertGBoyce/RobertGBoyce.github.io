@@ -275,18 +275,18 @@
 <div class="sim-control"><label for="sim-horizon">Planning horizon<output id="sim-horizon-value" for="sim-horizon">0.5</output></label><input id="sim-horizon" data-param="horizon" type="range" min="0.1" max="2" step="0.1" value="0.5"></div></div><p class="sim-caption">Rates are per unit of model time. Each dealer slider changes its running and terminal inventory penalties together.</p></details>
           <div class="sim-plot sim-price">
             <div class="sim-plot-head"><h3>Midprice and dealer quotes</h3><output id="sim-mid-value" class="sim-readout" aria-live="off">100.00</output></div>
-            <div class="sim-legend"><span class="sim-key">Midprice</span><span class="sim-key" style="--dealer:#235c53">Dealer 1</span><span class="sim-key" style="--dealer:#a8783b">Dealer 2</span><span class="sim-key" style="--dealer:#71619a">Dealer 3</span><span class="sim-key">Ask</span><span class="sim-key dashed">Bid</span></div>
-            <canvas id="sim-price" class="sim-chart" role="img" aria-label="Midprice and all three dealers' ask and bid quotes. Ask lines are solid and bid lines are dashed.">The midprice appears above the plot.</canvas>
+            <div class="sim-legend"><span class="sim-key">Midprice</span><span class="sim-key" style="--dealer:#235c53">Dealer 1</span><span class="sim-key" style="--dealer:#a8783b">Dealer 2</span><span class="sim-key" style="--dealer:#71619a">Dealer 3</span><span class="sim-key">Ask</span><span class="sim-key">Bid</span></div>
+            <canvas id="sim-price" class="sim-chart" role="img" aria-label="Midprice and all three dealers' ask and bid quotes. Ask and bid lines are solid.">The midprice appears above the plot.</canvas>
           </div>
-          <div class="sim-group"><h3 class="sim-group-title">Inventories <small>Shared vertical scale</small></h3><div class="sim-three"><div class="sim-plot"><div class="sim-plot-head"><h3 style="color:#235c53">Dealer 1</h3><output class="sim-readout" id="sim-inventory-0-value" aria-live="off">0.00</output></div><canvas id="sim-inventory-0" class="sim-chart" role="img" aria-label="Dealer 1 inventory over time">The current value appears above the plot.</canvas></div>
+          <div class="sim-group"><h3 class="sim-group-title">Inventories</h3><div class="sim-three"><div class="sim-plot"><div class="sim-plot-head"><h3 style="color:#235c53">Dealer 1</h3><output class="sim-readout" id="sim-inventory-0-value" aria-live="off">0.00</output></div><canvas id="sim-inventory-0" class="sim-chart" role="img" aria-label="Dealer 1 inventory over time">The current value appears above the plot.</canvas></div>
 <div class="sim-plot"><div class="sim-plot-head"><h3 style="color:#a8783b">Dealer 2</h3><output class="sim-readout" id="sim-inventory-1-value" aria-live="off">0.00</output></div><canvas id="sim-inventory-1" class="sim-chart" role="img" aria-label="Dealer 2 inventory over time">The current value appears above the plot.</canvas></div>
 <div class="sim-plot"><div class="sim-plot-head"><h3 style="color:#71619a">Dealer 3</h3><output class="sim-readout" id="sim-inventory-2-value" aria-live="off">0.00</output></div><canvas id="sim-inventory-2" class="sim-chart" role="img" aria-label="Dealer 3 inventory over time">The current value appears above the plot.</canvas></div></div></div>
-          <div class="sim-group"><h3 class="sim-group-title">Externalisation rates <small>Positive buys · Negative sells · Shared vertical scale</small></h3><div class="sim-three"><div class="sim-plot"><div class="sim-plot-head"><h3 style="color:#235c53">Dealer 1</h3><output class="sim-readout" id="sim-rate-0-value" aria-live="off">0.00</output></div><canvas id="sim-rate-0" class="sim-chart" role="img" aria-label="Dealer 1 externalisation rate over time">The current value appears above the plot.</canvas></div>
+          <div class="sim-group"><h3 class="sim-group-title">Externalisation rates</h3><div class="sim-three"><div class="sim-plot"><div class="sim-plot-head"><h3 style="color:#235c53">Dealer 1</h3><output class="sim-readout" id="sim-rate-0-value" aria-live="off">0.00</output></div><canvas id="sim-rate-0" class="sim-chart" role="img" aria-label="Dealer 1 externalisation rate over time">The current value appears above the plot.</canvas></div>
 <div class="sim-plot"><div class="sim-plot-head"><h3 style="color:#a8783b">Dealer 2</h3><output class="sim-readout" id="sim-rate-1-value" aria-live="off">0.00</output></div><canvas id="sim-rate-1" class="sim-chart" role="img" aria-label="Dealer 2 externalisation rate over time">The current value appears above the plot.</canvas></div>
 <div class="sim-plot"><div class="sim-plot-head"><h3 style="color:#71619a">Dealer 3</h3><output class="sim-readout" id="sim-rate-2-value" aria-live="off">0.00</output></div><canvas id="sim-rate-2" class="sim-chart" role="img" aria-label="Dealer 3 externalisation rate over time">The current value appears above the plot.</canvas></div></div></div>
           <div class="sim-two">
-            <div class="sim-plot"><div class="sim-plot-head"><h3>Client order imbalance</h3><output id="sim-imbalance-value" class="sim-readout" aria-live="off">0</output></div><p class="sim-caption">Cumulative client sells minus buys, excluding private flow.</p><canvas id="sim-imbalance" class="sim-chart" role="img" aria-label="Cumulative common client order imbalance">The current value appears above the plot.</canvas></div>
-            <div class="sim-plot"><div class="sim-plot-head"><h3>Price impact</h3><output id="sim-impact-value" class="sim-readout" aria-live="off">0.00</output></div><p class="sim-caption">Transient displacement caused by external trading.</p><canvas id="sim-impact" class="sim-chart" role="img" aria-label="Transient price impact">The current value appears above the plot.</canvas></div>
+            <div class="sim-plot"><div class="sim-plot-head"><h3>Client order imbalance</h3><output id="sim-imbalance-value" class="sim-readout" aria-live="off">0</output></div><canvas id="sim-imbalance" class="sim-chart" role="img" aria-label="Cumulative common client order imbalance">The current value appears above the plot.</canvas></div>
+            <div class="sim-plot"><div class="sim-plot-head"><h3>Price impact</h3><output id="sim-impact-value" class="sim-readout" aria-live="off">0.00</output></div><canvas id="sim-impact" class="sim-chart" role="img" aria-label="Transient price impact">The current value appears above the plot.</canvas></div>
           </div>
           <p id="sim-status" class="sim-status" role="status">Playing. Parameter changes preserve the current path.</p>
           <noscript><p>This interactive simulation requires JavaScript.</p></noscript>
@@ -333,7 +333,7 @@
 
             <h3>Using the controls</h3>
             <p>Each dealer slider changes its running and terminal inventory penalties together, so <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msup><mi>φ</mi><mi>i</mi></msup><mo>=</mo><msup><mi>α</mi><mi>i</mi></msup></mrow></math>. Larger values make carrying inventory more costly. The market controls set arrival rates, volatility, quote sensitivity, impact, external execution cost and the planning horizon.</p>
-            <p>Inventories and impact start at zero. The charts show the latest two units of model time, with solid ask quotes and dashed bid quotes. Parameter changes preserve the current state. Reset starts a fresh path with the selected parameters. Speed changes only playback, and the animation pauses when out of view.</p>
+            <p>Inventories and impact start at zero. The charts show the latest two units of model time, with solid ask and bid quotes. Parameter changes preserve the current state. Reset starts a fresh path with the selected parameters. Speed changes only playback, and the animation pauses when out of view.</p>
           </div>
         </details>
       </section>
@@ -425,6 +425,7 @@
               </span>
               <a href="https://doi.org/10.1137/24M1679811">Article</a>
               <a href="https://arxiv.org/abs/2407.17393">arXiv</a>
+              <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4904510">SSRN</a>
             </div>
           </li>
 
@@ -691,7 +692,7 @@ const DealerModel = (() => {
   }
   function render() {
     const priceSeries=colors.flatMap((color,i)=>[
-      {get:p=>p.ask[i],color},{get:p=>p.bid[i],color,dash:true}
+      {get:p=>p.ask[i],color},{get:p=>p.bid[i],color}
     ]);
     priceSeries.push({get:p=>p.mid,color:ink,weight:2});
     draw("sim-price",bounds(priceSeries.map(s=>s.get)),priceSeries);
