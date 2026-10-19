@@ -261,9 +261,9 @@
               <select id="sim-speed" aria-label="Playback speed"><option value=".5">0.5× speed</option><option value="1" selected>1× speed</option><option value="2">2× speed</option><option value="4">4× speed</option></select>
             </div>
           </div>
-          <div class="sim-dealers" role="group" aria-label="Dealer inventory preferences"><div class="sim-dealer" style="--dealer:#235c53"><h3>Dealer 1</h3><p id="sim-profile-0">Internaliser</p><div class="sim-control"><label for="sim-risk-0">Inventory penalties φ = α<output id="sim-risk-0-value" for="sim-risk-0">0.001</output></label><input id="sim-risk-0" aria-label="Dealer 1 inventory penalties" aria-valuetext="0.001" data-risk="0" type="range" min="-3" max="-0.7" step="0.1" value="-3"></div></div>
-<div class="sim-dealer" style="--dealer:#a8783b"><h3>Dealer 2</h3><p id="sim-profile-1">Intermediate</p><div class="sim-control"><label for="sim-risk-1">Inventory penalties φ = α<output id="sim-risk-1-value" for="sim-risk-1">0.010</output></label><input id="sim-risk-1" aria-label="Dealer 2 inventory penalties" aria-valuetext="0.010" data-risk="1" type="range" min="-3" max="-0.7" step="0.1" value="-2"></div></div>
-<div class="sim-dealer" style="--dealer:#71619a"><h3>Dealer 3</h3><p id="sim-profile-2">Externaliser</p><div class="sim-control"><label for="sim-risk-2">Inventory penalties φ = α<output id="sim-risk-2-value" for="sim-risk-2">0.100</output></label><input id="sim-risk-2" aria-label="Dealer 3 inventory penalties" aria-valuetext="0.100" data-risk="2" type="range" min="-3" max="-0.7" step="0.1" value="-1"></div></div></div>
+          <div class="sim-dealers" role="group" aria-label="Dealer inventory preferences"><div class="sim-dealer" style="--dealer:#235c53"><h3>Dealer 1</h3><p id="sim-profile-0">Internaliser</p><div class="sim-control"><label for="sim-risk-0">Inventory penalties φ = α<output id="sim-risk-0-value" for="sim-risk-0">0.001</output></label><input id="sim-risk-0" aria-label="Dealer 1 inventory penalties" aria-valuetext="0.001" data-risk="0" type="range" min="-3" max="0" step="0.1" value="-3"></div></div>
+<div class="sim-dealer" style="--dealer:#a8783b"><h3>Dealer 2</h3><p id="sim-profile-1">Intermediate</p><div class="sim-control"><label for="sim-risk-1">Inventory penalties φ = α<output id="sim-risk-1-value" for="sim-risk-1">0.010</output></label><input id="sim-risk-1" aria-label="Dealer 2 inventory penalties" aria-valuetext="0.010" data-risk="1" type="range" min="-3" max="0" step="0.1" value="-2"></div></div>
+<div class="sim-dealer" style="--dealer:#71619a"><h3>Dealer 3</h3><p id="sim-profile-2">Externaliser</p><div class="sim-control"><label for="sim-risk-2">Inventory penalties φ = α<output id="sim-risk-2-value" for="sim-risk-2">0.100</output></label><input id="sim-risk-2" aria-label="Dealer 3 inventory penalties" aria-valuetext="0.100" data-risk="2" type="range" min="-3" max="0" step="0.1" value="-1"></div></div></div>
           <details class="sim-settings"><summary>Market parameters</summary><div class="sim-controls"><div class="sim-control"><label for="sim-sigma">Price volatility σ<output id="sim-sigma-value" for="sim-sigma">5.0</output></label><input id="sim-sigma" data-param="sigma" type="range" min="0" max="10" step="0.5" value="5"></div>
 <div class="sim-control"><label for="sim-rhoA">Client buy rate ρᵃ<output id="sim-rhoA-value" for="sim-rhoA">25</output></label><input id="sim-rhoA" data-param="rhoA" type="range" min="1" max="40" step="1" value="25"></div>
 <div class="sim-control"><label for="sim-rhoB">Client sell rate ρᵇ<output id="sim-rhoB-value" for="sim-rhoB">25</output></label><input id="sim-rhoB" data-param="rhoB" type="range" min="1" max="40" step="1" value="25"></div>
@@ -333,7 +333,7 @@
 
             <h3>Using the controls</h3>
             <p>Each dealer slider changes its running and terminal inventory penalties together, so <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msup><mi>φ</mi><mi>i</mi></msup><mo>=</mo><msup><mi>α</mi><mi>i</mi></msup></mrow></math>. Larger values make carrying inventory more costly. The market controls set arrival rates, volatility, quote sensitivity, impact, external execution cost and the planning horizon.</p>
-            <p>Inventories and impact start at zero. The charts show the latest two units of model time, with solid ask and bid quotes. Parameter changes preserve the current state. Reset starts a fresh path with the selected parameters. Speed changes only playback, and the animation pauses when out of view.</p>
+            <p>Inventories and impact start at zero. The charts show the latest two units of model time, with solid ask and bid quotes. Parameter changes preserve the current state. Reset starts a fresh path with the selected parameters. The simulation also resets automatically after 24 hours of real time, keeping the selected parameters and playback state. Speed changes only playback, and the animation pauses when out of view.</p>
           </div>
         </details>
       </section>
@@ -624,6 +624,8 @@ const DealerModel = (() => {
   const seed=()=>crypto.getRandomValues(new Uint32Array(1))[0];
   let state=M.createState(params,policy,seed()),paused=matchMedia("(prefers-reduced-motion: reduce)").matches;
   let speed=1,credit=0,lastFrame=null,lastPaint=0,dirty=true,session=1;
+  const resetInterval=24*60*60*1000;
+  let resetDeadline=Date.now()+resetInterval,resetTimer;
   let visible=!("IntersectionObserver" in window);
   const duration=2,plotDuration=duration/.92,step=.002;
   const start=()=>Math.max(0,state.t-duration);
@@ -720,10 +722,22 @@ const DealerModel = (() => {
     paused=!paused;lastFrame=null;pauseLabel();
     setStatus(paused?"Paused.":"Playing. Parameter changes preserve the current path.");render();
   });
-  document.querySelector("#sim-restart").addEventListener("click",()=>{
-    state=M.createState(params,policy,seed());session++;credit=0;lastFrame=null;paused=false;pauseLabel();
-    setStatus("Playing. New path started with the selected parameters.");render();
-  });
+  function scheduleReset() {
+    clearTimeout(resetTimer);
+    resetTimer=setTimeout(()=>{if(!resetIfDue())scheduleReset();},Math.max(0,resetDeadline-Date.now()));
+  }
+  function resetSimulation(automatic=false) {
+    state=M.createState(params,policy,seed());session++;credit=0;lastFrame=null;
+    if(!automatic)paused=false;
+    resetDeadline=Date.now()+resetInterval;scheduleReset();pauseLabel();
+    setStatus((paused?"Paused. ":"Playing. ")+(automatic?"Automatic reset after 24 hours. Selected parameters preserved.":"New path started with the selected parameters."));
+    render();
+  }
+  function resetIfDue() {
+    if(Date.now()<resetDeadline)return false;
+    resetSimulation(true);return true;
+  }
+  document.querySelector("#sim-restart").addEventListener("click",()=>resetSimulation());
   document.querySelector("#sim-speed").addEventListener("change",e=>{speed=Number(e.target.value);});
   function updateParameters(input) {
     const previous=params,next={...params,risk:[...params.risk]},key=input.dataset.param;
@@ -749,9 +763,12 @@ const DealerModel = (() => {
   if("IntersectionObserver" in window)new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;lastFrame=null;},{rootMargin:"80px"}).observe(root);
   if("ResizeObserver" in window){const observer=new ResizeObserver(()=>{dirty=true;render();});canvasList.forEach(c=>observer.observe(c));}
   else window.addEventListener("resize",()=>{dirty=true;render();});
-  document.addEventListener("visibilitychange",()=>{lastFrame=null;});
+  document.addEventListener("visibilitychange",()=>{lastFrame=null;if(!document.hidden)resetIfDue();});
+  window.addEventListener("pageshow",()=>{resetIfDue();});
+  scheduleReset();
   pauseLabel();if(paused)setStatus("Paused to respect your reduced motion preference. Press Play to start.");render();
   function frame(timestamp) {
+    resetIfDue();
     const elapsed=lastFrame===null?0:Math.min(.1,(timestamp-lastFrame)/1000);lastFrame=timestamp;
     if(!paused&&visible&&!document.hidden) {
       credit+=elapsed*speed*duration/20;
