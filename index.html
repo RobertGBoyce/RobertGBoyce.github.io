@@ -90,7 +90,7 @@
     .research-text { max-width: 760px; }
     .research-text p:last-child { margin-bottom: 0; }
     .publications { list-style: none; margin: 0; padding: 0; }
-    .publications li { position: relative; padding: 25px 0 25px 37px; border-bottom: 1px solid var(--line); }
+    .publications li { position: relative; display:grid; grid-template-columns:minmax(0,1fr) 80px; align-items:center; gap:20px; padding:25px 0 25px 37px; border-bottom:1px solid var(--line); }
     .publications li:first-child { padding-top: 0; }
     .publications li:last-child { padding-bottom: 0; border-bottom: 0; }
     .publications li::before { content: "[" attr(value) "]"; position: absolute; left: 0; top: 29px; color: #6d7d71; font: 13px/1.5 var(--serif); }
@@ -98,6 +98,25 @@
     .publication-title { margin: 0 0 8px; font: 400 22px/1.4 var(--serif); letter-spacing: -.2px; }
     .publication-title a { color: var(--ink); text-decoration: none; }
     .publication-title a:hover { color: var(--accent); text-decoration: underline; }
+    .publication-heading { margin-bottom:8px; }
+    .publication-heading .publication-title { flex:1; min-width:0; margin:0; }
+    .publication-model { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px; width:80px; min-height:56px; border-radius:3px; text-decoration:none; }
+    .publication-model-label { font-size:10px; line-height:1.35; text-align:center; }
+    .publication-model svg { display:block; width:64px; height:46px; overflow:visible; }
+    .publication-model:is(:hover,:focus-visible) .icon-flow { animation:publication-flow 1.6s linear infinite; }
+    .publication-model:is(:hover,:focus-visible) .icon-node { animation:publication-bob 1.6s ease-in-out infinite; }
+    .publication-model:is(:hover,:focus-visible) .node-two { animation-delay:-.5s; }
+    .publication-model:is(:hover,:focus-visible) .node-three { animation-delay:-1s; }
+    .publication-model:is(:hover,:focus-visible) .icon-quote { animation:publication-quotes 1.8s ease-in-out infinite alternate; }
+    .publication-model:is(:hover,:focus-visible) .quote-two { animation-delay:-.9s; }
+    .publication-model:is(:hover,:focus-visible) .toxic-lens { animation:publication-lens-scan 3.2s ease-in-out infinite; }
+    .publication-model:is(:hover,:focus-visible) .toxic-clear-price { animation:publication-price-countermove 3.2s ease-in-out infinite; }
+    @keyframes publication-flow { to { stroke-dashoffset:-58; } }
+    @keyframes publication-bob { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-3px); } }
+    @keyframes publication-quotes { from { transform:translateY(2px); } to { transform:translateY(-4px); } }
+    @keyframes publication-lens-scan { 0%,100% { transform:translate(0,0); } 50% { transform:translate(34px,-8px); } }
+    @keyframes publication-price-countermove { 0%,100% { transform:translate(0,0); } 50% { transform:translate(-34px,8px); } }
+    @media(prefers-reduced-motion:reduce) { .publication-model * { animation:none !important; } }
     .authors { margin: 0 0 10px; color: var(--muted); font-size: 14px; line-height: 1.7; }
     .publication-details { display: flex; flex-wrap: wrap; gap: 5px 18px; color: var(--muted); font-size: 13px; line-height: 1.7; }
     .publication-details > span { flex-basis: 100%; }
@@ -121,7 +140,7 @@
       .page { width: calc(100% - 40px); }
       .site-header { gap: 15px; padding: 22px 0; }
       .brand { font-size: 19px; }
-      nav { gap: 18px; font-size: 13px; }
+      nav { gap: 12px; font-size: 13px; }
       .cv-link { padding: 4px 12px; }
       .intro { grid-template-columns: 1fr; gap: 32px; padding: 44px 13px 48px 0; }
       h1 { letter-spacing: -1.5px; }
@@ -130,7 +149,8 @@
       .section { grid-template-columns: 1fr; gap: 25px; padding: 32px 0; }
       h2 { font-size: 27px; }
       .publication-title { font-size: 21px; }
-      .publications li { padding-left: 30px; }
+      .publications li { padding-left:30px; grid-template-columns:minmax(0,1fr) 64px; gap:12px; }
+      .publication-model { width:64px; }
       .page-intro { padding: 44px 0 36px; }
       .talk-year h2 { font-size: 31px; }
       .talks li { grid-template-columns: 1fr; gap: 4px; padding: 17px 0; }
@@ -154,7 +174,7 @@
       <nav aria-label="Main navigation">
         <a href="index.html" aria-current="page">Home</a>
         <a href="talks.html">Talks</a>
-        <a href="simulation.html">Simulation</a>
+        <a href="simulation.html">Interactive Models</a>
         <a class="cv-link" href="cv.pdf">CV <span aria-hidden="true">↗</span></a>
       </nav>
     </header>
@@ -165,6 +185,7 @@
           <h2 class="about-heading">About me</h2>
           <p class="bio">I am a final year PhD student at Imperial College London, working on mathematical finance and supervised by Dr Eyal Neuman. My research interests include a variety of problems in market microstructure, studied with stochastic control and game theory among other methods. Previously, I completed my master's at the University of Warwick and my undergraduate studies at the London School of Economics.</p>
           <div class="profile-links">
+            <a href="mailto:r.boyce23@imperial.ac.uk">r.boyce23@imperial.ac.uk</a>
             <a href="https://scholar.google.com/citations?user=kV6VBPkAAAAJ&amp;hl=en">Google Scholar</a>
             <a href="https://www.linkedin.com/in/robert-boyce-392546171/">LinkedIn</a>
           </div>
@@ -184,12 +205,12 @@
       <section class="section" aria-labelledby="publications-heading">
         <div class="section-label"><h2 id="publications-heading">Publications<br>&amp; preprints</h2></div>
         <ol class="publications" role="list" reversed start="5">
-<li value="5">
-            <h3 class="publication-title">
+<li value="5"><div class="publication-copy">
+            <div class="publication-heading"><h3 class="publication-title">
               <a href="https://arxiv.org/abs/2607.28323">
                 Optimal Execution with Passive Market Impact
               </a>
-            </h3>
+            </h3></div>
 
             <p class="authors">
               With Alexander Barzykin, Eyal Neuman and
@@ -203,15 +224,20 @@
                 SSRN
               </a>
             </div>
-          </li>
+          </div><a class="publication-model" href="simulation.html#passive-impact" aria-label="Explore the interactive model for Optimal Execution with Passive Market Impact" title="Open interactive model"><svg class="model-icon" viewBox="0 0 100 70" aria-hidden="true" focusable="false">
+              <path d="M8 60h84" stroke="#d4cbd9" stroke-width="2"/>
+              <path class="icon-route" d="M10 36L24 30L37 36L51 27L65 32L78 25L91 30" fill="none" stroke="#4c78a8" stroke-width="2.5" stroke-linejoin="round"/>
+              <path class="icon-flow" d="M10 39L24 35L37 43L51 39L65 49L78 47L91 55" fill="none" stroke="#d55e00" stroke-width="2.5" stroke-dasharray="7 7" stroke-linejoin="round"/>
+              <g class="icon-quote"><path d="M10 15H31V20H52V25H72V31H91" fill="none" stroke="#6f4e7c" stroke-width="3" stroke-linejoin="round"/><circle cx="52" cy="25" r="3.5" fill="#6f4e7c"/></g>
+            </svg><span class="publication-model-label">Interactive model</span></a></li>
 
-          <li value="4">
-            <h3 class="publication-title">
+          <li value="4"><div class="publication-copy">
+            <div class="publication-heading"><h3 class="publication-title">
               <a href="https://arxiv.org/abs/2606.06413">
                 Competition in Dealer Markets with Internalisation
                 and Externalisation
               </a>
-            </h3>
+            </h3></div>
 
             <p class="authors">
               With Eyal Neuman.
@@ -224,14 +250,20 @@
                 SSRN
               </a>
             </div>
-          </li>
+          </div><a class="publication-model" href="simulation.html#dealer-markets" aria-label="Explore the interactive model for Competition in Dealer Markets with Internalisation and Externalisation" title="Open interactive model"><svg class="model-icon" viewBox="0 0 100 70" aria-hidden="true" focusable="false">
+              <path class="icon-route" d="M22 50 L50 13 L78 50 Z" fill="none" stroke="#bcced9" stroke-width="2"/>
+              <path class="icon-flow" d="M22 50 L50 13 L78 50 Z" fill="none" stroke="#0072b2" stroke-width="2" stroke-dasharray="7 22"/>
+              <g class="icon-node node-one"><circle cx="22" cy="50" r="10" fill="#0072b2"/><path d="M18 50h8" stroke="white" stroke-width="2"/></g>
+              <g class="icon-node node-two"><circle cx="50" cy="13" r="10" fill="#d55e00"/><path d="M46 13h8" stroke="white" stroke-width="2"/></g>
+              <g class="icon-node node-three"><circle cx="78" cy="50" r="10" fill="#7a3e9d"/><path d="M74 50h8" stroke="white" stroke-width="2"/></g>
+            </svg><span class="publication-model-label">Interactive model</span></a></li>
 
-          <li value="3">
-            <h3 class="publication-title">
+          <li value="3"><div class="publication-copy">
+            <div class="publication-heading"><h3 class="publication-title">
               <a href="https://www.risk.net/cutting-edge/7963389/fx-market-making-with-internal-liquidity">
                 FX Market Making with Internal Liquidity
               </a>
-            </h3>
+            </h3></div>
 
             <p class="authors">
               With Alexander Barzykin and Eyal Neuman.
@@ -247,14 +279,30 @@
                 SSRN
               </a>
             </div>
-          </li>
+          </div><a class="publication-model" href="simulation.html#fx-internal-liquidity" aria-label="Explore the interactive model for FX Market Making with Internal Liquidity" title="Open interactive model"><svg class="model-icon fx-model-icon" viewBox="0 0 140 80" aria-hidden="true" focusable="false">
+              <defs>
+                <marker id="publication-fx-sell-arrow" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto"><path d="M0 0L5 2.5L0 5Z" fill="#bd3e46"/></marker>
+                <marker id="publication-fx-buy-arrow" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto"><path d="M0 0L5 2.5L0 5Z" fill="#087f7b"/></marker>
+                <marker id="publication-fx-internal-arrow" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto"><path d="M0 0L5 2.5L0 5Z" fill="#244c78"/></marker>
+              </defs>
+              <path d="M29 15L57 35" fill="none" stroke="#e1bfc0" stroke-width="2"/>
+              <path d="M59 46L30 65" fill="none" stroke="#b9d7d1" stroke-width="2"/>
+              <path d="M108 40H92" fill="none" stroke="#becdde" stroke-width="2"/>
+              <path class="icon-flow" d="M29 15L57 35" fill="none" stroke="#bd3e46" stroke-width="2" stroke-dasharray="4 7" marker-end="url(#publication-fx-sell-arrow)"/>
+              <path class="icon-flow" d="M59 46L30 65" fill="none" stroke="#087f7b" stroke-width="2" stroke-dasharray="4 7" marker-end="url(#publication-fx-buy-arrow)"/>
+              <path class="icon-flow" d="M108 40H92" fill="none" stroke="#244c78" stroke-width="2" stroke-dasharray="4 7" marker-end="url(#publication-fx-internal-arrow)"/>
+              <rect x="1" y="5" width="28" height="20" rx="10" fill="#bd3e46"/>
+              <rect x="1" y="55" width="28" height="20" rx="10" fill="#087f7b"/>
+              <rect x="59" y="29" width="32" height="22" rx="11" fill="#e07824"/>
+              <rect x="109" y="29" width="30" height="22" rx="11" fill="#244c78"/>
+            </svg><span class="publication-model-label">Interactive model</span></a></li>
 
-          <li value="2">
-            <h3 class="publication-title">
+          <li value="2"><div class="publication-copy">
+            <div class="publication-heading"><h3 class="publication-title">
               <a href="https://doi.org/10.1137/24M1679811">
                 Market Making with Exogenous Competition
               </a>
-            </h3>
+            </h3></div>
 
             <p class="authors">
               With Martin Herdegen and Leandro Sánchez-Betancourt.
@@ -269,14 +317,18 @@
               <a href="https://arxiv.org/abs/2407.17393">arXiv</a>
               <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4904510">SSRN</a>
             </div>
-          </li>
+          </div><a class="publication-model" href="simulation.html#exogenous-competition" aria-label="Explore the interactive model for Market Making with Exogenous Competition" title="Open interactive model"><svg class="model-icon" viewBox="0 0 100 70" aria-hidden="true" focusable="false">
+              <path d="M8 59h84" stroke="#c8d8d2" stroke-width="2"/>
+              <g class="icon-quote quote-one"><path d="M10 42h18V30h20V20h23V10h19" fill="none" stroke="#087f7b" stroke-width="3" stroke-linejoin="round"/><circle cx="48" cy="20" r="4" fill="#087f7b"/></g>
+              <g class="icon-quote quote-two"><path d="M10 52h20V45h20V34h20V27h20" fill="none" stroke="#c14e42" stroke-width="3" stroke-linejoin="round"/><circle cx="50" cy="34" r="4" fill="#c14e42"/></g>
+            </svg><span class="publication-model-label">Interactive model</span></a></li>
 
-          <li value="1">
-            <h3 class="publication-title">
+          <li value="1"><div class="publication-copy">
+            <div class="publication-heading"><h3 class="publication-title">
               <a href="https://arxiv.org/abs/2407.04510">
                 Unwinding Toxic Flow with Partial Information
               </a>
-            </h3>
+            </h3></div>
 
             <p class="authors">
               With Alexander Barzykin and Eyal Neuman.
@@ -289,7 +341,20 @@
                 SSRN
               </a>
             </div>
-          </li>
+          </div><a class="publication-model" href="simulation.html#toxic-flow" aria-label="Explore the interactive model for Unwinding Toxic Flow with Partial Information" title="Open interactive model"><svg class="model-icon" viewBox="0 0 100 70" aria-hidden="true" focusable="false">
+<defs>
+<filter id="publication-toxic-price-blur" x="-15%" y="-30%" width="130%" height="160%"><feGaussianBlur stdDeviation="1.6"/></filter>
+<clipPath id="publication-toxic-lens-window" clipPathUnits="userSpaceOnUse"><circle cx="29" cy="37" r="15.5"/></clipPath>
+</defs>
+<path d="M6 45L12 41L17 44L22 32L27 36L32 29L37 35L42 25L47 29L52 21L57 27L62 19L67 24L72 15L77 22L82 17L87 20L94 10" fill="none" stroke="#365c81" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity=".65" filter="url(#publication-toxic-price-blur)"/>
+<g class="toxic-lens">
+<path d="M41 49L53 61" fill="none" stroke="#365c81" stroke-width="5.5" stroke-linecap="round"/>
+<circle cx="29" cy="37" r="16" fill="#f5f9fb"/>
+<g clip-path="url(#publication-toxic-lens-window)"><path class="toxic-clear-price" d="M6 45L12 41L17 44L22 32L27 36L32 29L37 35L42 25L47 29L52 21L57 27L62 19L67 24L72 15L77 22L82 17L87 20L94 10" fill="none" stroke="#087f7b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g>
+<circle cx="29" cy="37" r="16" fill="none" stroke="#365c81" stroke-width="2.7"/>
+<path d="M18 31A12 12 0 0 1 27 25" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".9"/>
+</g>
+</svg><span class="publication-model-label">Interactive model</span></a></li>
         </ol>
       </section>
     </main>

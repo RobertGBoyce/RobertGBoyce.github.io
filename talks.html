@@ -33,13 +33,14 @@
     .skip-link:focus { top: 12px; }
     .site-header {
       display: flex;
+      flex-wrap: wrap;
       justify-content: flex-end;
       align-items: center;
       gap: 24px;
       padding: 25px 0;
       border-bottom: 1px solid var(--line);
     }
-    .brand { font: 22px/1.25 var(--serif); color: var(--ink); text-decoration: none; }
+    .brand { font: 22px/1.25 var(--serif); color: var(--ink); text-decoration: none; margin-right: auto; white-space: nowrap; }
     nav { display: flex; align-items: center; gap: 30px; font-size: 14px; }
     nav a { text-decoration: none; }
     nav a[aria-current="page"] { text-decoration: underline; text-decoration-thickness: 2px; }
@@ -118,7 +119,7 @@
       .page { width: calc(100% - 40px); }
       .site-header { gap: 15px; padding: 22px 0; }
       .brand { font-size: 19px; }
-      nav { gap: 18px; font-size: 13px; }
+      nav { gap: 12px; font-size: 13px; }
       .cv-link { padding: 4px 12px; }
       .intro { grid-template-columns: 1fr; gap: 32px; padding: 44px 13px 48px 0; }
       h1 { letter-spacing: -1.5px; }
@@ -147,10 +148,11 @@
   <a class="skip-link" href="#main">Skip to content</a>
   <div class="page">
     <header class="site-header">
+      <a class="brand" href="index.html">Robert Boyce</a>
       <nav aria-label="Main navigation">
         <a href="index.html">Home</a>
         <a href="talks.html" aria-current="page">Talks</a>
-        <a href="simulation.html">Simulation</a>
+        <a href="simulation.html">Interactive Models</a>
         <a class="cv-link" href="cv.pdf">CV <span aria-hidden="true">↗</span></a>
       </nav>
     </header>
