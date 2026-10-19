@@ -263,14 +263,14 @@
           </div>
           <div class="sim-dealers" role="group" aria-label="Dealer inventory preferences"><div class="sim-dealer" style="--dealer:#235c53"><h3>Dealer 1</h3><p id="sim-profile-0">Internaliser</p><div class="sim-control"><label for="sim-risk-0">Inventory penalties φ = α<output id="sim-risk-0-value" for="sim-risk-0">0.001</output></label><input id="sim-risk-0" aria-label="Dealer 1 inventory penalties" aria-valuetext="0.001" data-risk="0" type="range" min="-3" max="0" step="0.1" value="-3"></div></div>
 <div class="sim-dealer" style="--dealer:#a8783b"><h3>Dealer 2</h3><p id="sim-profile-1">Intermediate</p><div class="sim-control"><label for="sim-risk-1">Inventory penalties φ = α<output id="sim-risk-1-value" for="sim-risk-1">0.010</output></label><input id="sim-risk-1" aria-label="Dealer 2 inventory penalties" aria-valuetext="0.010" data-risk="1" type="range" min="-3" max="0" step="0.1" value="-2"></div></div>
-<div class="sim-dealer" style="--dealer:#71619a"><h3>Dealer 3</h3><p id="sim-profile-2">Externaliser</p><div class="sim-control"><label for="sim-risk-2">Inventory penalties φ = α<output id="sim-risk-2-value" for="sim-risk-2">0.100</output></label><input id="sim-risk-2" aria-label="Dealer 3 inventory penalties" aria-valuetext="0.100" data-risk="2" type="range" min="-3" max="0" step="0.1" value="-1"></div></div></div>
+<div class="sim-dealer" style="--dealer:#71619a"><h3>Dealer 3</h3><p id="sim-profile-2">Externaliser</p><div class="sim-control"><label for="sim-risk-2">Inventory penalties φ = α<output id="sim-risk-2-value" for="sim-risk-2">0.200</output></label><input id="sim-risk-2" aria-label="Dealer 3 inventory penalties" aria-valuetext="0.200" data-risk="2" type="range" min="-3" max="0" step="0.1" value="-0.7"></div></div></div>
           <details class="sim-settings"><summary>Market parameters</summary><div class="sim-controls"><div class="sim-control"><label for="sim-sigma">Price volatility σ<output id="sim-sigma-value" for="sim-sigma">5.0</output></label><input id="sim-sigma" data-param="sigma" type="range" min="0" max="10" step="0.5" value="5"></div>
-<div class="sim-control"><label for="sim-rhoA">Client buy rate ρᵃ<output id="sim-rhoA-value" for="sim-rhoA">25</output></label><input id="sim-rhoA" data-param="rhoA" type="range" min="1" max="40" step="1" value="25"></div>
-<div class="sim-control"><label for="sim-rhoB">Client sell rate ρᵇ<output id="sim-rhoB-value" for="sim-rhoB">25</output></label><input id="sim-rhoB" data-param="rhoB" type="range" min="1" max="40" step="1" value="25"></div>
-<div class="sim-control"><label for="sim-mu">Private flow rate μ<output id="sim-mu-value" for="sim-mu">5.00</output></label><input id="sim-mu" data-param="mu" type="range" min="0" max="10" step="0.25" value="5"></div>
+<div class="sim-control"><label for="sim-rhoA">Client buy rate ρᵃ<output id="sim-rhoA-value" for="sim-rhoA">15</output></label><input id="sim-rhoA" data-param="rhoA" type="range" min="1" max="40" step="1" value="15"></div>
+<div class="sim-control"><label for="sim-rhoB">Client sell rate ρᵇ<output id="sim-rhoB-value" for="sim-rhoB">15</output></label><input id="sim-rhoB" data-param="rhoB" type="range" min="1" max="40" step="1" value="15"></div>
+<div class="sim-control"><label for="sim-mu">Private flow rate μ<output id="sim-mu-value" for="sim-mu">1.00</output></label><input id="sim-mu" data-param="mu" type="range" min="0" max="10" step="0.25" value="1"></div>
 <div class="sim-control"><label for="sim-lambda">Impact strength λ<output id="sim-lambda-value" for="sim-lambda">0.50</output></label><input id="sim-lambda" data-param="lambda" type="range" min="0" max="1" step="0.05" value="0.5"></div>
 <div class="sim-control"><label for="sim-beta">Impact decay β<output id="sim-beta-value" for="sim-beta">1.00</output></label><input id="sim-beta" data-param="beta" type="range" min="0.25" max="4" step="0.25" value="1"></div>
-<div class="sim-control"><label for="sim-kappa">Price sensitivity κ<output id="sim-kappa-value" for="sim-kappa">0.50</output></label><input id="sim-kappa" data-param="kappa" type="range" min="0.1" max="1" step="0.05" value="0.5"></div>
+<div class="sim-control"><label for="sim-kappa">Price sensitivity κ<output id="sim-kappa-value" for="sim-kappa">1.00</output></label><input id="sim-kappa" data-param="kappa" type="range" min="0.1" max="1" step="0.05" value="1"></div>
 <div class="sim-control"><label for="sim-epsilon">Externalisation cost ε<output id="sim-epsilon-value" for="sim-epsilon">0.10</output></label><input id="sim-epsilon" data-param="epsilon" type="range" min="0.05" max="1" step="0.05" value="0.1"></div>
 <div class="sim-control"><label for="sim-horizon">Planning horizon<output id="sim-horizon-value" for="sim-horizon">0.5</output></label><input id="sim-horizon" data-param="horizon" type="range" min="0.1" max="2" step="0.1" value="0.5"></div></div><p class="sim-caption">Rates are per unit of model time. Each dealer slider changes its running and terminal inventory penalties together.</p></details>
           <div class="sim-plot sim-price">
@@ -464,8 +464,8 @@
 const DealerModel = (() => {
   const N = 3, S = 5;
   const defaults = Object.freeze({
-    kappa: .5, rhoA: 25, rhoB: 25, mu: 5, lambda: .5, beta: 1,
-    sigma: 5, horizon: .5, epsilon: .1, risk: [.001, .01, .1]
+    kappa: 1, rhoA: 15, rhoB: 15, mu: 1, lambda: .5, beta: 1,
+    sigma: 5, horizon: .5, epsilon: .1, risk: [.001, .01, 10**(-.7)]
   });
   function solveLinear(a, b, width) {
     const m = a.slice(), out = b.slice();
