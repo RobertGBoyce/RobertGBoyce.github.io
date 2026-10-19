@@ -61,7 +61,7 @@
     h1 { margin: 0 0 25px; font-size: clamp(36px, 5vw, 54px); line-height: 1.08; letter-spacing: -2px; }
     h2 { margin: 0; font-size: 28px; line-height: 1.35; letter-spacing: -.4px; }
     p { margin: 0 0 18px; }
-    .intro { display: grid; grid-template-columns: minmax(0, 1fr) 250px; align-items: center; gap: 78px; padding: 80px 14px 80px 0; }
+    .intro { display: grid; /* grid-template-columns: minmax(0, 1fr) 250px; */ align-items: center; gap: 78px; padding: 80px 14px 80px 0; }
     .about-heading { margin-bottom: 14px; font-size: 24px; }
     .bio { max-width: 540px; color: var(--muted); font-size: 17px; line-height: 1.8; }
     .profile-links { display: flex; flex-wrap: wrap; gap: 12px 25px; margin-top: 29px; font-size: 14px; }
@@ -132,7 +132,7 @@
     .talks time { padding-top: 2px; color: var(--muted); font-size: 13px; white-space: nowrap; font-variant-numeric: tabular-nums; }
     footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 20px; margin-top: 20px; padding: 24px 0 35px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
     @media (max-width: 800px) {
-      .intro { gap: 40px; grid-template-columns: minmax(0, 1fr) 200px; }
+      .intro { gap: 40px; /* grid-template-columns: minmax(0, 1fr) 200px; */ }
       .portrait { width: 200px; height: 240px; }
       .section { grid-template-columns: 170px minmax(0, 1fr); gap: 30px; }
     }
@@ -190,13 +190,14 @@
             <a href="https://www.linkedin.com/in/robert-boyce-392546171/">LinkedIn</a>
           </div>
         </div>
+        <!-- Portrait temporarily disabled. Add portrait.jpg and uncomment to restore.
         <figure class="portrait-frame">
           <div class="portrait">
             <span aria-hidden="true">RB</span>
-            <!-- Add your photograph as portrait.jpg in this folder. -->
             <img src="portrait.jpg" alt="Robert Boyce" width="250" height="300" onerror="this.hidden = true;">
           </div>
         </figure>
+        -->
       </section>
 
 

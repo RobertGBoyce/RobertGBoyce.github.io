@@ -355,6 +355,17 @@
       <div class="models-intro">
         <h1 class="models-title">Interactive Models</h1>
         <div class="model-picker" role="tablist" aria-label="Choose an interactive model">
+          <button class="model-card" id="choose-passive" type="button" role="tab" aria-selected="false" aria-controls="passive-simulation" tabindex="-1" data-model="passive-impact" style="--model-accent:#6f4e7c;--model-tint:#f4eff7">
+            <svg class="model-icon" viewBox="0 0 100 70" aria-hidden="true" focusable="false">
+              <path d="M8 60h84" stroke="#d4cbd9" stroke-width="2"/>
+              <path class="icon-route" d="M10 36L24 30L37 36L51 27L65 32L78 25L91 30" fill="none" stroke="#4c78a8" stroke-width="2.5" stroke-linejoin="round"/>
+              <path class="icon-flow" d="M10 39L24 35L37 43L51 39L65 49L78 47L91 55" fill="none" stroke="#d55e00" stroke-width="2.5" stroke-dasharray="7 7" stroke-linejoin="round"/>
+              <g class="icon-quote"><path d="M10 15H31V20H52V25H72V31H91" fill="none" stroke="#6f4e7c" stroke-width="3" stroke-linejoin="round"/><circle cx="52" cy="25" r="3.5" fill="#6f4e7c"/></g>
+            </svg>
+            <span class="model-card-title">Execution with<br>Passive Impact</span>
+            <span class="model-card-subtitle">Executing through limit orders</span>
+            <span class="model-open" aria-hidden="true"></span>
+          </button>
           <button class="model-card" id="choose-dealers" type="button" role="tab" aria-selected="true" aria-controls="simulation" tabindex="0" data-model="dealer-markets" style="--model-accent:#0072b2;--model-tint:#eef5fa">
             <svg class="model-icon" viewBox="0 0 100 70" aria-hidden="true" focusable="false">
               <path class="icon-route" d="M22 50 L50 13 L78 50 Z" fill="none" stroke="#bcced9" stroke-width="2"/>
@@ -367,17 +378,6 @@
             <span class="model-card-subtitle">Game between strategic dealers</span>
             <span class="model-open" aria-hidden="true"></span>
           </button>
-          <button class="model-card" id="choose-exogenous" type="button" role="tab" aria-selected="false" aria-controls="exogenous-simulation" tabindex="-1" data-model="exogenous-competition" style="--model-accent:#087f7b;--model-tint:#edf6f3">
-            <svg class="model-icon" viewBox="0 0 100 70" aria-hidden="true" focusable="false">
-              <path d="M8 59h84" stroke="#c8d8d2" stroke-width="2"/>
-              <g class="icon-quote quote-one"><path d="M10 42h18V30h20V20h23V10h19" fill="none" stroke="#087f7b" stroke-width="3" stroke-linejoin="round"/><circle cx="48" cy="20" r="4" fill="#087f7b"/></g>
-              <g class="icon-quote quote-two"><path d="M10 52h20V45h20V34h20V27h20" fill="none" stroke="#c14e42" stroke-width="3" stroke-linejoin="round"/><circle cx="50" cy="34" r="4" fill="#c14e42"/></g>
-            </svg>
-            <span class="model-card-title">Exogenous<br>Competition</span>
-            <span class="model-card-subtitle">A dealer and its competitor</span>
-            <span class="model-open" aria-hidden="true"></span>
-          </button>
-
           <button class="model-card" id="choose-fx" type="button" role="tab" aria-selected="false" aria-controls="fx-simulation" tabindex="-1" data-model="fx-internal-liquidity" style="--model-accent:#a5682a;--model-tint:#faf3e9">
             <svg class="model-icon fx-model-icon" viewBox="0 0 140 80" aria-hidden="true" focusable="false">
               <defs>
@@ -400,18 +400,17 @@
             <span class="model-card-subtitle">OTC flow and internal liquidity</span>
             <span class="model-open" aria-hidden="true"></span>
           </button>
-          <button class="model-card" id="choose-passive" type="button" role="tab" aria-selected="false" aria-controls="passive-simulation" tabindex="-1" data-model="passive-impact" style="--model-accent:#6f4e7c;--model-tint:#f4eff7">
+          <button class="model-card" id="choose-exogenous" type="button" role="tab" aria-selected="false" aria-controls="exogenous-simulation" tabindex="-1" data-model="exogenous-competition" style="--model-accent:#087f7b;--model-tint:#edf6f3">
             <svg class="model-icon" viewBox="0 0 100 70" aria-hidden="true" focusable="false">
-              <path d="M8 60h84" stroke="#d4cbd9" stroke-width="2"/>
-              <path class="icon-route" d="M10 36L24 30L37 36L51 27L65 32L78 25L91 30" fill="none" stroke="#4c78a8" stroke-width="2.5" stroke-linejoin="round"/>
-              <path class="icon-flow" d="M10 39L24 35L37 43L51 39L65 49L78 47L91 55" fill="none" stroke="#d55e00" stroke-width="2.5" stroke-dasharray="7 7" stroke-linejoin="round"/>
-              <g class="icon-quote"><path d="M10 15H31V20H52V25H72V31H91" fill="none" stroke="#6f4e7c" stroke-width="3" stroke-linejoin="round"/><circle cx="52" cy="25" r="3.5" fill="#6f4e7c"/></g>
+              <path d="M8 59h84" stroke="#c8d8d2" stroke-width="2"/>
+              <g class="icon-quote quote-one"><path d="M10 42h18V30h20V20h23V10h19" fill="none" stroke="#087f7b" stroke-width="3" stroke-linejoin="round"/><circle cx="48" cy="20" r="4" fill="#087f7b"/></g>
+              <g class="icon-quote quote-two"><path d="M10 52h20V45h20V34h20V27h20" fill="none" stroke="#c14e42" stroke-width="3" stroke-linejoin="round"/><circle cx="50" cy="34" r="4" fill="#c14e42"/></g>
             </svg>
-            <span class="model-card-title">Execution with<br>Passive Impact</span>
-            <span class="model-card-subtitle">Executing through limit orders</span>
+            <span class="model-card-title">Exogenous<br>Competition</span>
+            <span class="model-card-subtitle">A dealer and its competitor</span>
             <span class="model-open" aria-hidden="true"></span>
           </button>
-<button class="model-card" id="choose-toxic" type="button" role="tab" aria-selected="false" aria-controls="toxic-simulation" tabindex="-1" data-model="toxic-flow" style="--model-accent:#365c81;--model-tint:#eef3f8">
+          <button class="model-card" id="choose-toxic" type="button" role="tab" aria-selected="false" aria-controls="toxic-simulation" tabindex="-1" data-model="toxic-flow" style="--model-accent:#365c81;--model-tint:#eef3f8">
 <svg class="model-icon" viewBox="0 0 100 70" aria-hidden="true" focusable="false">
 <defs>
 <filter id="toxic-price-blur" x="-15%" y="-30%" width="130%" height="160%"><feGaussianBlur stdDeviation="1.6"/></filter>
@@ -436,7 +435,7 @@
       <section class="model-demo" id="simulation" role="tabpanel" aria-labelledby="choose-dealers">
         <div class="sim-heading">
           <h2 id="simulation-heading">Competition in Dealer Markets</h2>
-          <p class="sim-credit"><em>A model from a joint work with Eyal Neuman</em><a class="sim-paper" href="https://arxiv.org/abs/2606.06413">Read the paper ↗</a></p>
+          <p class="sim-credit"><em>A model from a joint work with Eyal Neuman</em><a class="sim-paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6844540">Read the paper ↗</a></p>
           <p>Three dealers compete for client flow, manage their inventories and trade in the external market.</p>
         </div>
         <div class="sim-panel">
@@ -516,14 +515,14 @@
             <div class="sim-equation" role="group" aria-label="Open loop Nash equilibrium condition"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msup><mi>J</mi><mi>i</mi></msup><mo>(</mo><msup><mi>u</mi><mi>i</mi></msup><mo>,</mo><msup><mi>u</mi><mrow><mo>−</mo><mi>i</mi></mrow></msup><mo>)</mo><mo>≥</mo><msup><mi>J</mi><mi>i</mi></msup><mo>(</mo><msup><mi>v</mi><mi>i</mi></msup><mo>,</mo><msup><mi>u</mi><mrow><mo>−</mo><mi>i</mi></mrow></msup><mo>)</mo></mrow></math></div>
             <p>This must hold for each of the three dealers and every admissible alternative strategy <math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mi>v</mi><mi>i</mi></msup></math>. The strategies may depend on information as it arrives. “Open loop” means that, when testing a dealer’s deviation, the other dealers’ control processes are held fixed. Their actions are not recomputed as responses to the state changes caused by that deviation.</p>
             <p>The equilibrium is derived for a finite horizon. The continuous animation applies those controls using a rolling planning horizon.</p>
-            <p>For a more detailed description of the model, the derivation of the Nash equilibrium, and our analysis, <a href="https://arxiv.org/abs/2606.06413">read the paper ↗</a>.</p>
+            <p>For a more detailed description of the model, the derivation of the Nash equilibrium, and our analysis, <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6844540">read the paper ↗</a>.</p>
           </div>
         </section>
       </section>
       <section class="model-demo" id="exogenous-simulation" role="tabpanel" aria-labelledby="choose-exogenous" hidden>
         <div class="sim-heading">
           <h2 id="exogenous-heading">Market Making with Exogenous Competition</h2>
-          <p class="sim-credit"><em>A model from joint work with Martin Herdegen and Leandro Sánchez-Betancourt</em><a class="sim-paper" href="https://arxiv.org/abs/2407.17393">Read the paper ↗</a></p>
+          <p class="sim-credit"><em>A model from joint work with Martin Herdegen and Leandro Sánchez-Betancourt, published in <a href="https://doi.org/10.1137/24M1679811">SIAM Journal on Financial Mathematics</a></em><a class="sim-paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4904510">Read the paper ↗</a></p>
           <p>A reference market maker optimises its quotes against a competitor whose quotes follow an inventory rule.</p>
         </div>
         <div class="sim-panel">
@@ -605,7 +604,7 @@
             <h3>The reference dealer’s policy</h3>
             <p>The simulation solves the paper’s finite horizon HJB equation numerically on the bounded inventory grid, using capped exponential fill probabilities. For continuous playback, it applies that policy with a rolling planning horizon of one unit of model time. The competitor follows its prescribed quoting rule.</p>
             <p>The fixed quote sensitivity is <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>κ</mi><mo>=</mo><mn>2</mn></mrow></math> and the competitor’s quote noise volatility is 0.1. The plots show the latest unit of model time while inventories and P&amp;L remain cumulative since the last reset.</p>
-            <p>For a more detailed description of the model, its solution and our analysis, <a href="https://arxiv.org/abs/2407.17393">read the paper ↗</a>.</p>
+            <p>For a more detailed description of the model, its solution and our analysis, <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4904510">read the paper ↗</a>.</p>
           </div>
         </section>
       </section>
@@ -613,7 +612,7 @@
       <section class="model-demo" id="fx-simulation" role="tabpanel" aria-labelledby="choose-fx" hidden>
         <div class="sim-heading">
           <h2>FX Market Making with Internal Liquidity</h2>
-          <p class="sim-credit"><em>A model from joint work with Alexander Barzykin and Eyal Neuman</em><a class="sim-paper" href="https://arxiv.org/abs/2512.04603">Read the paper ↗</a></p>
+          <p class="sim-credit"><em>A model from joint work with Alexander Barzykin and Eyal Neuman, published in <a href="https://www.risk.net/cutting-edge/7963389/fx-market-making-with-internal-liquidity">Risk Cutting Edge</a></em><a class="sim-paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5859484">Read the paper ↗</a></p>
           <p>A dealer streams prices to OTC clients and chooses when to trade with an internal client’s order.</p>
         </div>
         <div class="sim-panel">
@@ -729,7 +728,7 @@
 <p>Writing the value function as <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>v</mi><mo>=</mo><mi>x</mi><mo>+</mo><mi>q</mi><mi>s</mi><mo>+</mo><mi>h</mi></mrow></math>, the reduced HJBQVI is</p>
 <div class="sim-equation" role="group" aria-label="Expanded HJBQVI from the paper"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mtable columnalign="left left" columnspacing="0.2em" rowspacing=".6em"><mtr><mtd style="text-align:left"><mstyle displaystyle="true"><mrow><mn>0</mn><mo>=</mo><mi>max</mi><mo stretchy="false" minsize="2em" maxsize="2em">{</mo></mrow></mstyle></mtd><mtd style="text-align:left"><mstyle displaystyle="true"><mrow><mfrac><mrow><mo>∂</mo><mi>h</mi></mrow><mrow><mo>∂</mo><mi>t</mi></mrow></mfrac><mrow><mo>(</mo><mrow><mi>t</mi><mo>,</mo><mi>q</mi><mo>,</mo><mi>l</mi></mrow><mo>)</mo></mrow><mo>−</mo><mi>φ</mi><msup><mi>q</mi><mn>2</mn></msup><mo>−</mo><mi>ψ</mi><msup><mrow><mo>(</mo><mi>l</mi><mo>)</mo></mrow><mo>+</mo></msup></mrow></mstyle></mtd></mtr><mtr><mtd style="text-align:left"><mstyle displaystyle="true"><mrow></mrow></mstyle></mtd><mtd style="text-align:left"><mstyle displaystyle="true"><mrow><mo>+</mo><munder><mo>∑</mo><mrow><mi>z</mi><mo>∈</mo><mi mathvariant="script">Z</mi><mo>,</mo><mi>i</mi><mo>∈</mo><mo>{</mo><mi>b</mi><mo>,</mo><mi>a</mi><mo>}</mo></mrow></munder><mfrac><mrow><mi>z</mi><msup><mi>λ</mi><mrow><mi>i</mi><mo>,</mo><mi>z</mi></mrow></msup><msup><mi>e</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><msup><mi>κ</mi><mi>z</mi></msup></mfrac><mi>exp</mi><mrow><mo>(</mo><mrow><mfrac><msup><mi>κ</mi><mi>z</mi></msup><mi>z</mi></mfrac><mrow><mo>(</mo><mrow><mrow><mi>h</mi><mrow><mo>(</mo><mrow><mi>t</mi><mo>,</mo><mrow><mi>q</mi><mo>±</mo><mi>z</mi></mrow><mo>,</mo><mi>l</mi></mrow><mo>)</mo></mrow></mrow><mo>−</mo><mrow><mi>h</mi><mrow><mo>(</mo><mrow><mi>t</mi><mo>,</mo><mi>q</mi><mo>,</mo><mi>l</mi></mrow><mo>)</mo></mrow></mrow></mrow><mo>)</mo></mrow></mrow><mo>)</mo></mrow></mrow></mstyle></mtd></mtr><mtr><mtd style="text-align:left"><mstyle displaystyle="true"><mrow></mrow></mstyle></mtd><mtd style="text-align:left"><mstyle displaystyle="true"><mrow><mo>+</mo><mrow><mi>ν</mi><mrow><mo>(</mo><mrow><mrow><mi>h</mi><mrow><mo>(</mo><mrow><mi>t</mi><mo>,</mo><mi>q</mi><mo>,</mo><mrow><mi>l</mi><mo>−</mo><mover><mi>ℓ</mi><mo>ˇ</mo></mover></mrow></mrow><mo>)</mo></mrow></mrow><mo>−</mo><mrow><mi>h</mi><mrow><mo>(</mo><mrow><mi>t</mi><mo>,</mo><mi>q</mi><mo>,</mo><mi>l</mi></mrow><mo>)</mo></mrow></mrow></mrow><mo>)</mo></mrow><msub><mn mathvariant="double-struck">1</mn><mrow><mo>{</mo><mi>l</mi><mo>></mo><mn>0</mn><mo>}</mo></mrow></msub></mrow><mo>+</mo><mrow><mi>μ</mi><mrow><mo>(</mo><mrow><mrow><mi>h</mi><mrow><mo>(</mo><mrow><mi>t</mi><mo>,</mo><mi>q</mi><mo>,</mo><mrow><mi>l</mi><mo>+</mo><mover><mi>ℓ</mi><mo>¯</mo></mover></mrow></mrow><mo>)</mo></mrow></mrow><mo>−</mo><mrow><mi>h</mi><mrow><mo>(</mo><mrow><mi>t</mi><mo>,</mo><mi>q</mi><mo>,</mo><mi>l</mi></mrow><mo>)</mo></mrow></mrow></mrow><mo>)</mo></mrow><msub><mn mathvariant="double-struck">1</mn><mrow><mo>{</mo><mi>l</mi><mo>≤</mo><mn>0</mn><mo>}</mo></mrow></msub></mrow><mo>,</mo></mrow></mstyle></mtd></mtr><mtr><mtd style="text-align:left"><mstyle displaystyle="true"><mrow></mrow></mstyle></mtd><mtd style="text-align:left"><mstyle displaystyle="true"><mrow><mrow><mo>(</mo><mrow><mi>p</mi><mrow><mi>h</mi><mrow><mo>(</mo><mrow><mi>t</mi><mo>,</mo><mrow><mi>q</mi><mo>+</mo><mn>1</mn></mrow><mo>,</mo><mrow><mi>l</mi><mo>−</mo><mn>1</mn><mo>+</mo><mover><mi>ℓ</mi><mo>¯</mo></mover></mrow></mrow><mo>)</mo></mrow></mrow><mo>+</mo><mrow><mo>(</mo><mrow><mn>1</mn><mo>−</mo><mi>p</mi></mrow><mo>)</mo></mrow><mrow><mi>h</mi><mrow><mo>(</mo><mrow><mi>t</mi><mo>,</mo><mrow><mi>q</mi><mo>+</mo><mn>1</mn></mrow><mo>,</mo><mrow><mi>l</mi><mo>−</mo><mn>1</mn></mrow></mrow><mo>)</mo></mrow></mrow></mrow><mo>)</mo></mrow><msub><mn mathvariant="double-struck">1</mn><mrow><mo>{</mo><mi>l</mi><mo>≤</mo><mn>1</mn><mo>}</mo></mrow></msub></mrow></mstyle></mtd></mtr><mtr><mtd style="text-align:left"><mstyle displaystyle="true"><mrow></mrow></mstyle></mtd><mtd style="text-align:left"><mstyle displaystyle="true"><mrow><mo>+</mo><mrow><mi>h</mi><mrow><mo>(</mo><mrow><mi>t</mi><mo>,</mo><mrow><mi>q</mi><mo>+</mo><mn>1</mn></mrow><mo>,</mo><mrow><mi>l</mi><mo>−</mo><mn>1</mn></mrow></mrow><mo>)</mo></mrow></mrow><msub><mn mathvariant="double-struck">1</mn><mrow><mo>{</mo><mi>l</mi><mo>></mo><mn>1</mn><mo>}</mo></mrow></msub><mo>−</mo><mrow><mi>h</mi><mrow><mo>(</mo><mrow><mi>t</mi><mo>,</mo><mi>q</mi><mo>,</mo><mi>l</mi></mrow><mo>)</mo></mrow></mrow><mo>−</mo><mrow><mo>(</mo><mrow><mi>ρ</mi><msub><mn mathvariant="double-struck">1</mn><mrow><mo>{</mo><mi>l</mi><mo>></mo><mn>0</mn><mo>}</mo></mrow></msub><mo>+</mo><mo>∞</mo><msub><mn mathvariant="double-struck">1</mn><mrow><mo>{</mo><mi>l</mi><mo>≤</mo><mn>0</mn><mo>}</mo></mrow></msub></mrow><mo>)</mo></mrow></mrow><mo stretchy="false" minsize="2em" maxsize="2em">}</mo></mstyle></mtd></mtr></mtable></math></div>
 <p>with terminal condition <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mrow><mi>h</mi><mrow><mo>(</mo><mrow><mi>T</mi><mo>,</mo><mi>q</mi><mo>,</mo><mi>l</mi></mrow><mo>)</mo></mrow></mrow><mo>=</mo><mo>−</mo><mi>α</mi><msup><mi>q</mi><mn>2</mn></msup></mrow></math>.</p>
-<p>For a more detailed description of the model, its solution and our analysis, <a href="https://arxiv.org/abs/2512.04603">read the paper ↗</a>.</p>
+<p>For a more detailed description of the model, its solution and our analysis, <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5859484">read the paper ↗</a>.</p>
           </div>
         </section>
       </section>
@@ -738,7 +737,7 @@
       <section class="model-demo" id="passive-simulation" role="tabpanel" aria-labelledby="choose-passive" hidden>
         <div class="sim-heading">
           <h2>Execution with Passive Impact</h2>
-          <p class="sim-credit"><em>A model from joint work with Alexander Barzykin, Eyal Neuman and Sturmius Tuschmann</em><a class="sim-paper" href="https://arxiv.org/abs/2607.28323">Read the paper ↗</a></p>
+          <p class="sim-credit"><em>A model from joint work with Alexander Barzykin, Eyal Neuman and Sturmius Tuschmann</em><a class="sim-paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7147361">Read the paper ↗</a></p>
           <p>A trader sells through limit orders, balancing execution speed, inventory costs and the price impact of its quotes.</p>
         </div>
         <div class="sim-panel">
@@ -808,7 +807,7 @@
             <p>As defined in the paper, implementation shortfall compares the initial price with the average price of completed fills. With N filled lots,</p>
             <div class="sim-equation" aria-label="Implementation shortfall"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mtext>IS</mtext><mi>t</mi></msub><mo>=</mo><msub><mi>S</mi><mi>0</mi></msub><mo>−</mo><mfrac><msub><mi>X</mi><mi>t</mi></msub><msub><mi>N</mi><mi>t</mi></msub></mfrac><mo>,</mo><mspace width=".6em"/><msub><mi>N</mi><mi>t</mi></msub><mo>&gt;</mo><mn>0</mn></mrow></math></div>
             <p>It is shown in dollars per share. Positive values mean execution below the initial price, and negative values mean execution above it. The quantity is undefined until the first fill and excludes inventory penalties and any unfilled shares.</p>
-            <p>For a more detailed description of the model, its solution and our analysis, <a class="sim-paper" href="https://arxiv.org/abs/2607.28323">read the paper ↗</a>.</p>
+            <p>For a more detailed description of the model, its solution and our analysis, <a class="sim-paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7147361">read the paper ↗</a>.</p>
           </div>
         </section>
       </section>
@@ -816,7 +815,7 @@
 <section class="model-demo" id="toxic-simulation" role="tabpanel" aria-labelledby="choose-toxic" hidden>
 <div class="sim-heading">
 <h2>Unwinding Toxic Flow</h2>
-<p class="sim-credit"><em>A model from joint work with Alexander Barzykin and Eyal Neuman</em><a class="sim-paper" href="https://arxiv.org/abs/2407.04510">Read the paper ↗</a></p>
+<p class="sim-credit"><em>A model from joint work with Alexander Barzykin and Eyal Neuman</em><a class="sim-paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4885957">Read the paper ↗</a></p>
 <p>Unwinding incoming inventory when toxicity is hidden and responds to the dealer’s own trades.</p>
 </div>
 <div class="sim-panel">
@@ -885,7 +884,7 @@
 <p>The optimal strategy is linear in observed inventory, estimated toxicity, transient impact, the unaffected price and the signal U.</p>
 <div class="sim-equation" aria-label="Optimal hedge rate"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msup><msub><mi>q</mi><mrow><mi>t</mi></mrow></msub><mrow><mo>*</mo></mrow></msup><mo>=</mo><msup><mi>g</mi><mrow><mi>X</mi></mrow></msup><mo>(</mo><mi>t</mi><mo>)</mo><msub><mi>X</mi><mrow><mi>t</mi></mrow></msub><mo>+</mo><msup><mi>g</mi><mrow><mi>θ</mi></mrow></msup><mo>(</mo><mi>t</mi><mo>)</mo><msub><mover><mi>θ</mi><mo>^</mo></mover><mrow><mi>t</mi></mrow></msub><mo>+</mo><msup><mi>g</mi><mrow><mi>Y</mi></mrow></msup><mo>(</mo><mi>t</mi><mo>)</mo><msub><mi>Y</mi><mrow><mi>t</mi></mrow></msub><mo>+</mo><msup><mi>g</mi><mrow><mi>P</mi></mrow></msup><mo>(</mo><mi>t</mi><mo>)</mo><msub><mi>P</mi><mrow><mi>t</mi></mrow></msub><mo>+</mo><msup><mi>g</mi><mi>U</mi></msup><mo>(</mo><mi>t</mi><mo>)</mo><msub><mi>U</mi><mi>t</mi></msub></mrow></math></div>
 <p>The deterministic coefficients solve the trading problem backwards from the terminal cost. Under full information, the strategy uses θ in place of θ̂. Parameter changes update the strategy while preserving the current path.</p>
-<p>For a more detailed description of the model, its solution and our analysis, <a class="sim-paper" href="https://arxiv.org/abs/2407.04510">read the paper ↗</a>.</p>
+<p>For a more detailed description of the model, its solution and our analysis, <a class="sim-paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4885957">read the paper ↗</a>.</p>
 </div>
 </section>
 </section>
