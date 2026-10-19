@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">RB</title>
+  <rect width="64" height="64" fill="#f8f7f3"/>
+  <g fill="none" stroke="#235c53" stroke-width="4">
+    <path d="M10 49V17H20C32 17 32 33 20 33H10M20 33L30 49"/>
+    <path d="M37 33H46C56 33 56 17 46 17H37V49H47C59 49 59 33 46 33"/>
+  </g>
+</svg>

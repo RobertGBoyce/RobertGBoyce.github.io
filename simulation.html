@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#235c53">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <title>Interactive Models | Robert Boyce</title>
   <meta name="description" content="Interactive models from Robert Boyce’s research on market making and dealer competition.">
   <style>
@@ -849,7 +850,7 @@
 <section class="sim-method" aria-labelledby="toxic-explanation-heading">
 <h2 id="toxic-explanation-heading">Model explanation</h2>
 <div class="sim-explanation">
-<p>A dealer receives a continuous flow of inventory and trades to unwind it over one trading day. The incoming flow has a changing drift, called toxicity, which reacts to the dealer’s own trades. This demonstration includes the notebook’s observed price signal. It starts with zero inventory and impact, toxicity θ₀ = 0.1 and unaffected price P₀ = 1.</p>
+<p>A dealer receives a continuous flow of inventory and trades to unwind it over one trading day. The incoming flow has a changing drift, called toxicity, which reacts to the dealer’s own trades. This demonstration includes the notebook’s observed price signal.</p>
 <h3>Inflow, hedging and inventory</h3>
 <p>The trading rate q is positive for buying and negative for selling. Cumulative hedging Q adds to incoming flow Z to give the dealer’s inventory X.</p>
 <div class="sim-equation" aria-label="Cumulative hedge and inventory"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>d</mi><msub><mi>Q</mi><mrow><mi>t</mi></mrow></msub><mo>=</mo><msub><mi>q</mi><mrow><mi>t</mi></mrow></msub><mi>d</mi><mi>t</mi><mo>,</mo><mspace width="1em"/><msub><mi>X</mi><mrow><mi>t</mi></mrow></msub><mo>=</mo><mi>x</mi><mo>+</mo><msub><mi>Q</mi><mrow><mi>t</mi></mrow></msub><mo>+</mo><msub><mi>Z</mi><mrow><mi>t</mi></mrow></msub></mrow></math></div>
@@ -857,7 +858,7 @@
 <div class="sim-equation" aria-label="Order flow dynamics"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>d</mi><msub><mi>Z</mi><mrow><mi>t</mi></mrow></msub><mo>=</mo><msub><mi>θ</mi><mrow><mi>t</mi></mrow></msub><mi>d</mi><mi>t</mi><mo>+</mo><mi>σ</mi><mi>d</mi><msubsup><mi>W</mi><mi>t</mi><mi>Z</mi></msubsup></mrow></math></div>
 <div class="sim-equation" aria-label="Toxicity dynamics"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>d</mi><msub><mi>θ</mi><mrow><mi>t</mi></mrow></msub><mo>=</mo><mo>(</mo><mi>a</mi><msub><mi>θ</mi><mrow><mi>t</mi></mrow></msub><mo>+</mo><mi>b</mi><msub><mi>q</mi><mrow><mi>t</mi></mrow></msub><mo>+</mo><mi>c</mi><msub><mi>U</mi><mi>t</mi></msub><mo>)</mo><mi>d</mi><mi>t</mi><mo>+</mo><mi>d</mi><mi>d</mi><msubsup><mi>W</mi><mi>t</mi><mi>θ</mi></msubsup></mrow></math></div>
 <h3>Prices and impact</h3>
-<p>The unaffected price P combines Brownian fluctuations with the observed signal A, which has drift U following a mean reverting Ornstein–Uhlenbeck process. This demonstration fixes κ = 1 and U₀ = 0. Signal volatility ℓ ranges from 0 to 0.01 and starts at 0. Setting ℓ = 0 stops new signal noise while the current signal decays. Resetting with ℓ = 0 removes the signal entirely.</p>
+<p>The unaffected price P combines Brownian fluctuations with the observed signal A, which has drift U following a mean reverting Ornstein–Uhlenbeck process. Setting ℓ = 0 stops new signal noise, but the current signal continues to decay. Since the signal starts at zero and reverts to it, resetting with ℓ = 0 removes the signal entirely.</p>
 <div class="sim-equation" aria-label="Observed price signal"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>d</mi><msub><mi>A</mi><mi>t</mi></msub><mo>=</mo><msub><mi>U</mi><mi>t</mi></msub><mi>d</mi><mi>t</mi><mo>,</mo><mspace width="1em"/><mi>d</mi><msub><mi>U</mi><mi>t</mi></msub><mo>=</mo><mo>−</mo><mi>κ</mi><msub><mi>U</mi><mi>t</mi></msub><mi>d</mi><mi>t</mi><mo>+</mo><mi>ℓ</mi><mi>d</mi><msubsup><mi>W</mi><mi>t</mi><mi>U</mi></msubsup></mrow></math></div>
 <p>Trading creates transient impact Y, which accumulates at strength λ and decays at rate β. The Brownian motions driving price, signal, flow and toxicity are independent. Setting c = 0 removes the signal’s direct effect on toxicity while retaining its effect on price.</p>
 <div class="sim-equation" aria-label="Unaffected price and transient impact"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>d</mi><msub><mi>P</mi><mrow><mi>t</mi></mrow></msub><mo>=</mo><msub><mi>U</mi><mi>t</mi></msub><mi>d</mi><mi>t</mi><mo>+</mo><msub><mi>σ</mi><mrow><mi>M</mi></mrow></msub><mi>d</mi><msubsup><mi>W</mi><mi>t</mi><mi>M</mi></msubsup><mo>,</mo><mspace width="1em"/><mi>d</mi><msub><mi>Y</mi><mrow><mi>t</mi></mrow></msub><mo>=</mo><mo>(</mo><mo>−</mo><mi>β</mi><msub><mi>Y</mi><mrow><mi>t</mi></mrow></msub><mo>+</mo><mi>λ</mi><msub><mi>q</mi><mrow><mi>t</mi></mrow></msub><mo>)</mo><mi>d</mi><mi>t</mi></mrow></math></div>
