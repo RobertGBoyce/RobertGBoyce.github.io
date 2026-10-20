@@ -175,11 +175,18 @@
     .sim-plot h3 { margin:0; font-size:14px; font-weight:600; }
     .sim-readout { color:var(--accent); font-size:12px; font-variant-numeric:tabular-nums; }
     .sim-chart { display:block; width:100%; height:170px; }
+    .chart-tooltip { position:fixed; z-index:1000; pointer-events:none; max-width:calc(100vw - 24px); padding:5px 8px; background:rgba(255,255,252,.97); border:1px solid #d9e1d6; border-radius:6px; box-shadow:0 3px 10px #24333218; color:#243332; font:600 12px/1.3 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+    .chart-tooltip-title { display:flex; align-items:center; gap:6px; }
+    .chart-tooltip-swatch { width:6px; height:6px; border-radius:50%; background:var(--series); box-shadow:0 0 0 1px #24333215; flex:none; }
+    .chart-tooltip-detail { display:block; margin:1px 0 0 12px; font-size:10px; font-weight:400; color:#626e69; }
+    .chart-tooltip-detail[hidden] { display:none; }
+    .chart-hover-point { position:fixed; z-index:999; pointer-events:none; width:8px; height:8px; box-sizing:border-box; border:2px solid var(--series); border-radius:50%; background:#fff; transform:translate(-50%,-50%); box-shadow:0 0 0 3px #ffffffa6; }
     .sim-price .sim-chart { height:285px; }
     .sim-legend { display:flex; flex-wrap:wrap; gap:6px 18px; color:var(--muted); font-size:12px; margin:6px 0 10px; line-height:1.6; }
     .sim-key { display:inline-flex; align-items:center; gap:6px; }
     .sim-key::before { content:""; width:17px; border-top:2px solid var(--dealer,#243332); }
     .sim-key.dashed::before { border-top-style:dashed; }
+    .sim-key.dotted::before { border-top-style:dotted; }
     .sim-three { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:22px; }
     .sim-two { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; padding-top:22px; border-top:1px solid var(--line); }
     .sim-group { margin:22px 0; border-top:1px solid var(--line); padding-top:18px; }
@@ -671,8 +678,9 @@
                 <span class="sim-key" style="--dealer:#172b4d">Mid</span>
                 <span class="sim-key" style="--dealer:#9e1830">Ask 1m</span><span class="sim-key" style="--dealer:#d44859">5m</span><span class="sim-key" style="--dealer:#ec939c">10m</span>
                 <span class="sim-key" style="--dealer:#005c91">Bid 1m</span><span class="sim-key" style="--dealer:#3688b8">5m</span><span class="sim-key" style="--dealer:#69a9c8">10m</span>
+                <span class="sim-key dotted" style="--dealer:#76cd26">Internal liquidity taken</span>
               </div>
-              <canvas class="sim-chart" id="fx-price-chart" role="img" aria-label="Mid price and bid and ask quotes for sizes one, five and ten million">Streamed OTC prices.</canvas>
+              <canvas class="sim-chart" id="fx-price-chart" role="img" aria-label="Mid price and bid and ask quotes for sizes one, five and ten million, with dotted light green vertical markers when internal liquidity is taken">Streamed OTC prices and internal executions.</canvas>
             </div>
             <div class="sim-plot">
               <div class="sim-plot-head"><h3>Inventory</h3><output class="sim-readout" id="fx-inventory" aria-live="off">0 million</output></div>
@@ -887,6 +895,72 @@
       <span>Robert Boyce</span>
     </footer>
   </div>
+<script id="chart-hover">
+const ChartHover=(()=>{
+  const charts=new WeakMap();
+  const tooltip=document.createElement("div"),marker=document.createElement("div");
+  tooltip.className="chart-tooltip";tooltip.setAttribute("role","tooltip");tooltip.hidden=true;
+  const title=document.createElement("div"),swatch=document.createElement("span"),label=document.createElement("span"),detail=document.createElement("span");
+  title.className="chart-tooltip-title";swatch.className="chart-tooltip-swatch";detail.className="chart-tooltip-detail";
+  title.append(swatch,label);tooltip.append(title,detail);
+  marker.className="chart-hover-point";marker.hidden=true;marker.setAttribute("aria-hidden","true");
+  document.body.append(tooltip,marker);
+  let active=null,pointer=null,dismissed=false;
+  function hide(){tooltip.hidden=true;marker.hidden=true;}
+  function clear(){active=null;pointer=null;hide();}
+  function show(){
+    if(!active||!pointer||dismissed)return hide();
+    const chart=charts.get(active),rect=active.getBoundingClientRect();
+    if(!chart||!rect.width||!rect.height)return clear();
+    const {view,series}=chart,px=pointer.x-rect.left,py=pointer.y-rect.top;
+    const inside=(x,y)=>x>=view.left&&x<=view.width-view.right&&y>=view.top&&y<=view.height-view.bottom;
+    if(!inside(px,py))return hide();
+    let best=null,distance=8;
+    for(const line of series){
+      let previous=null;
+      for(const point of line.points){
+        if(!point||!point.every(Number.isFinite)){previous=null;continue;}
+        const a=previous||point,dx=point[0]-a[0],dy=point[1]-a[1],length=dx*dx+dy*dy;
+        const u=length?Math.max(0,Math.min(1,((px-a[0])*dx+(py-a[1])*dy)/length)):0;
+        const x=a[0]+u*dx,y=a[1]+u*dy,d=Math.hypot(px-x,py-y);
+        if(d<distance&&inside(x,y)){distance=d;best={line,x,y};}
+        previous=point;
+      }
+    }
+    if(!best)return hide();
+    label.textContent=best.line.label;detail.textContent=best.line.detail||"";
+    detail.hidden=!best.line.detail;
+    tooltip.style.setProperty("--series",best.line.color);marker.style.setProperty("--series",best.line.color);
+    tooltip.hidden=false;marker.hidden=false;
+    const gap=16,w=tooltip.offsetWidth,h=tooltip.offsetHeight;
+    const left=pointer.x+gap+w>innerWidth-12?pointer.x-gap-w:pointer.x+gap;
+    const top=pointer.y+gap+h>innerHeight-12?pointer.y-gap-h:pointer.y+gap;
+    tooltip.style.left=Math.max(12,Math.min(innerWidth-w-12,left))+"px";
+    tooltip.style.top=Math.max(12,Math.min(innerHeight-h-12,top))+"px";
+    marker.style.left=(rect.left+best.x)+"px";marker.style.top=(rect.top+best.y)+"px";
+  }
+  function update(view,series){
+    if(!view)return;
+    const canvas=view.ctx.canvas;
+    if(!charts.has(canvas)){
+      canvas.addEventListener("pointermove",event=>{
+        if(event.pointerType==="touch")return;
+        active=canvas;pointer={x:event.clientX,y:event.clientY};dismissed=false;show();
+      });
+      canvas.addEventListener("pointerleave",clear);
+      canvas.addEventListener("pointercancel",clear);
+    }
+    charts.set(canvas,{view,series});
+    if(active===canvas)show();
+  }
+  function trace(view,points,getX,getY){
+    return points.map(point=>[view.x(getX(point)),view.y(getY(point))]);
+  }
+  addEventListener("scroll",clear,true);addEventListener("resize",clear);addEventListener("blur",clear);addEventListener("hashchange",clear);
+  document.addEventListener("keydown",event=>{if(event.key==="Escape"){dismissed=true;hide();}});
+  return {update,trace};
+})();
+</script>
 <script id="dealer-model">
 
 /* Full-information port of the working PD_class.py nonlinear coefficient ODEs.
@@ -1130,12 +1204,16 @@ const DealerModel = (() => {
     ctx.strokeStyle="#b7c1b6";ctx.lineWidth=1;ctx.setLineDash([2,4]);
     ctx.beginPath();ctx.moveTo(x(state.t),top);ctx.lineTo(x(state.t),height-bottom);ctx.stroke();ctx.setLineDash([]);
     ctx.restore();
+    if(id==="sim-price"){
+      const chart={...view,left,right,top,bottom,x,y};
+      ChartHover.update(chart,series.map(line=>({...line,points:ChartHover.trace(chart,state.points,p=>p.t,line.get)})));
+    }
   }
   function render() {
     const priceSeries=colors.flatMap((color,i)=>[
-      {get:p=>p.ask[i],color},{get:p=>p.bid[i],color}
+      {get:p=>p.ask[i],color,label:"Dealer "+(i+1)},{get:p=>p.bid[i],color,label:"Dealer "+(i+1)}
     ]);
-    priceSeries.push({get:p=>p.mid,color:ink,weight:2});
+    priceSeries.push({get:p=>p.mid,color:ink,weight:2,label:"Midprice"});
     draw("sim-price",bounds(priceSeries.map(s=>s.get)),priceSeries);
     const invGet=colors.map((_,i)=>p=>p.inventory[i]),rateGet=colors.map((_,i)=>p=>p.rate[i]);
     const pnlGet=colors.map((_,i)=>p=>p.pnl[i]);
@@ -1924,38 +2002,46 @@ const FXDepthCharts=(()=>{
     function quantityChart(values){
       const view=axis(lookup("depth-q-chart"),values.quantityRange,[-qLimit,qLimit],[-15,-10,-5,0,5,10,15],"Inventory q (million)","−δᵇ, δᵃ (bps)");
       if(!view)return;
-      const {ctx,x,y}=view;clip(view);
+      const {ctx,x,y}=view,hover=[];clip(view);
       ctx.lineWidth=1.8;ctx.lineJoin="round";
       for(let l=0;l<2;l++)for(let side=0;side<2;side++)for(let j=0;j<3;j++){
         const offset=((l*2+side)*3+j)*qCount;
         ctx.strokeStyle=(side?askColours:bidColours)[j];ctx.setLineDash(l?[5,4]:[]);
+        const points=[];
         let distance=0;
         for(let qi=1;qi<qCount;qi++){
           const a=offset+qi-1,b=a+1,x0=x(qi-1-qLimit),x1=x(qi-qLimit),y0=y(values.quantity[a]),y1=y(values.quantity[b]);
           ctx.globalAlpha=Math.min(values.opacity[a],values.opacity[b]);ctx.lineDashOffset=-distance;
-          if(ctx.globalAlpha>.001){ctx.beginPath();ctx.moveTo(x0,y0);ctx.lineTo(x1,y1);ctx.stroke();}
+          if(ctx.globalAlpha>.001){ctx.beginPath();ctx.moveTo(x0,y0);ctx.lineTo(x1,y1);ctx.stroke();points.push([x0,y0],[x1,y1]);}
+          else points.push(null);
           distance+=Math.hypot(x1-x0,y1-y0);
         }
+        hover.push({label:"Size = "+FXModel.sizes[j]+"m",detail:side?"Ask":"Bid",color:(side?askColours:bidColours)[j],points});
       }
       ctx.globalAlpha=values.boundaryOpacity;ctx.strokeStyle="#76cd26";ctx.setLineDash([5,4]);ctx.lineDashOffset=0;ctx.lineWidth=1.3;
       ctx.beginPath();ctx.moveTo(x(values.boundary),view.top);ctx.lineTo(x(values.boundary),view.height-view.bottom);ctx.stroke();
       ctx.restore();
+      if(values.boundaryOpacity>.001)hover.push({label:"Internal execution boundary",color:"#76cd26",points:[[x(values.boundary),view.top],[x(values.boundary),view.height-view.bottom]]});
+      ChartHover.update(view,hover);
     }
     function timeCharts(values){
       const count=2*FXModel.depthQ+1,samples=FXModel.depthTimes,panel=selectedPanel;
       const view=axis(lookup("depth-time-chart"),values.timeRange,[0,FXModel.horizon],[0,100,200,300],"Time t (seconds)",panel%2?"δᵃ (bps)":"δᵇ (bps)");
       if(!view)return;
-      const {ctx,x,y}=view;clip(view);ctx.lineWidth=1.5;ctx.lineJoin="round";
+      const {ctx,x,y}=view,hover=[];clip(view);ctx.lineWidth=1.5;ctx.lineJoin="round";
       for(let qi=0;qi<count;qi++){
         const offset=(panel*count+qi)*samples;
-        ctx.strokeStyle=inventoryColours[qi];ctx.beginPath();
+        const points=[];ctx.strokeStyle=inventoryColours[qi];ctx.beginPath();
         for(let t=0;t<samples;t++){
           const xx=x(t),yy=y(values.time[offset+t]);
+          points.push([xx,yy]);
           if(t===0)ctx.moveTo(xx,yy);else ctx.lineTo(xx,yy);
         }
         ctx.stroke();
+        hover.push({label:"q = "+(qi-FXModel.depthQ),color:inventoryColours[qi],points});
       }
       ctx.restore();
+      ChartHover.update(view,hover);
     }
     const viewLabels=["Bid · no liquidity (L = 0)","Ask · no liquidity (L = 0)","Bid · with liquidity (L = 1)","Ask · with liquidity (L = 1)"];
     root.querySelectorAll('input[name="fx-depth-side"],input[name="fx-depth-liquidity"]').forEach(input=>input.addEventListener("change",()=>{
@@ -2109,21 +2195,32 @@ const FXDepthCharts=(()=>{
     if(Number.isFinite(last[key])){ctx.fillStyle=color;ctx.beginPath();ctx.arc(x(last.t),y(last[key]),2.4,0,Math.PI*2);ctx.fill();}
     ctx.restore();
   }
-  function internalMarks(view){
+  function internalMarks(view,{dotted=false}={}){
     if(!view)return;
     const {ctx,x}=view;ctx.save();ctx.beginPath();ctx.rect(view.left,view.top,view.width-view.left-view.right,view.height-view.top-view.bottom);ctx.clip();
     for(const event of state.events){
-      const xx=x(event.t);ctx.strokeStyle="rgba(66,184,25,.32)";ctx.setLineDash([2,4]);ctx.beginPath();ctx.moveTo(xx,view.top);ctx.lineTo(xx,view.height-view.bottom);ctx.stroke();ctx.setLineDash([]);
-      ctx.fillStyle="#42b819";ctx.beginPath();ctx.moveTo(xx,view.top+5);ctx.lineTo(xx-3,view.top);ctx.lineTo(xx+3,view.top);ctx.closePath();ctx.fill();
+      const xx=x(event.t);ctx.strokeStyle=dotted?"#76cd26":"rgba(66,184,25,.32)";ctx.lineWidth=dotted?1.8:1;ctx.lineCap=dotted?"round":"butt";ctx.setLineDash(dotted?[0,4]:[2,4]);ctx.beginPath();ctx.moveTo(xx,view.top);ctx.lineTo(xx,view.height-view.bottom);ctx.stroke();ctx.setLineDash([]);
+      ctx.fillStyle=dotted?"#76cd26":"#42b819";ctx.beginPath();ctx.moveTo(xx,view.top+5);ctx.lineTo(xx-3,view.top);ctx.lineTo(xx+3,view.top);ctx.closePath();ctx.fill();
     }
     ctx.restore();
   }
   function render(){
     if(!state||root.hidden)return;
     const prices=axis($("price-chart"),["mid","ask0","ask1","ask2","bid0","bid1","bid2"],{price:true});
+    internalMarks(prices,{dotted:true});
     const asks=["#9e1830","#d44859","#ec939c"],bids=["#005c91","#3688b8","#69a9c8"];
     for(let j=2;j>=0;j--){curve(prices,"ask"+j,asks[j],false,j?1.4:1.9);curve(prices,"bid"+j,bids[j],false,j?1.4:1.9);}
     curve(prices,"mid","#172b4d",false,1.8);
+    if(prices){
+      const series=[{key:"mid",label:"Midprice",color:"#172b4d"}];
+      for(let j=0;j<3;j++){
+        series.push({key:"ask"+j,label:"Size = "+M.sizes[j]+"m",detail:"Ask",color:asks[j]});
+        series.push({key:"bid"+j,label:"Size = "+M.sizes[j]+"m",detail:"Bid",color:bids[j]});
+      }
+      const hover=series.map(line=>({...line,points:ChartHover.trace(prices,state.points,p=>p.t,p=>p[line.key])}));
+      for(const event of state.events)hover.push({label:"Internal liquidity taken",color:"#76cd26",points:[[prices.x(event.t),prices.top],[prices.x(event.t),prices.height-prices.bottom]]});
+      ChartHover.update(prices,hover);
+    }
     curve(axis($("inventory-chart"),["q"],{integer:true}),"q","#e03b46",true);
     curve(axis($("pnl-chart"),["pnl"]),"pnl","#0084d6");
     const liquidity=axis($("liquidity-chart"),["l"],{fixed:[0,1.1]});internalMarks(liquidity);curve(liquidity,"l","#42b819",true);
@@ -2494,16 +2591,19 @@ const PassiveModel=(()=>{
     if(!depthTo||root.hidden||(!depthDirty&&!depthMoving))return;
     const values=displayedDepths(now),view=axis($("depth-chart"),{low:values.low,high:values.high,yLabel:"Quote depth δ* ($/share)"});
     if(!view)return;
-    const {ctx,x,y}=view;clip(view);ctx.lineWidth=1.6;ctx.lineJoin="round";
+    const {ctx,x,y}=view,hover=[];clip(view);ctx.lineWidth=1.6;ctx.lineJoin="round";
     for(let q=1;q<=M.initialInventory;q++){
-      ctx.strokeStyle=colours[q-1];ctx.beginPath();
+      const points=[];ctx.strokeStyle=colours[q-1];ctx.beginPath();
       for(let i=0;i<M.samples;i++){
         const xx=x(i*M.gridStep),yy=y(values.depths[q*M.samples+i]);
+        points.push([xx,yy]);
         if(i===0)ctx.moveTo(xx,yy);else ctx.lineTo(xx,yy);
       }
       ctx.stroke();
+      hover.push({label:"q = "+q,color:colours[q-1],points});
     }
     ctx.restore();depthDirty=false;
+    ChartHover.update(view,hover);
   }
   function processAxis(canvas,keys,{fixed=null,digits=3,padding=.005,yLabel=""}={}){
     const start=Math.max(0,state.t-historyDuration),end=start+historyDuration/.92;
@@ -2543,6 +2643,11 @@ const PassiveModel=(()=>{
     renderDepths();
     const prices=processAxis($("price-chart"),["unaffected","mid","quote"],{yLabel:"Price ($/share)"});
     fillMarks(prices);curve(prices,"unaffected","#4c78a8");curve(prices,"mid","#d55e00");curve(prices,"quote","#6f4e7c");
+    if(prices)ChartHover.update(prices,[
+      {key:"unaffected",label:"Unaffected mid",color:"#4c78a8"},
+      {key:"mid",label:"Impacted mid",color:"#d55e00"},
+      {key:"quote",label:"Quoted sell price",color:"#6f4e7c"}
+    ].map(line=>({...line,points:ChartHover.trace(prices,state.points,p=>p.t,p=>p[line.key])})));
     curve(processAxis($("inventory-chart"),["q"],{fixed:[0,M.initialInventory],digits:0,yLabel:"Inventory (units)"}),"q","#e03b46",true);
     curve(processAxis($("shortfall-chart"),["shortfall"],{padding:.005,yLabel:"Shortfall ($/share)"}),"shortfall","#0084d6",true);
     const last=state.points[state.points.length-1];
@@ -2836,12 +2941,14 @@ const ToxicModel=(()=>{
       points.forEach((point,index)=>{if(index===0)ctx.moveTo(x(point.t),y(point[line.key]));else ctx.lineTo(x(point.t),y(point[line.key]));});ctx.stroke();
     }
     ctx.restore();
+    const chart={...view,left,right,top,bottom,x,y};
+    ChartHover.update(chart,series.map(line=>({label:line.label,color:line.colour,points:ChartHover.trace(chart,points,p=>p.t,p=>p[line.key])})));
   }
   function render(){
     if(!state||root.hidden)return;
-    plot($("inventory-chart"),[{key:"inventory",colour:"#0084d6"},{key:"hedge",colour:"#ef6c00"},{key:"inflow",colour:"#009e73"}],"Quantity",3);
-    plot($("toxicity-chart"),[{key:"theta",colour:"#0084d6"},{key:"estimate",colour:"#ef6c00",dashed:true}],"Toxicity",3);
-    plot($("price-chart"),[{key:"price",colour:"#0084d6"},{key:"impacted",colour:"#ef6c00"}],"Price",4);
+    plot($("inventory-chart"),[{key:"inventory",label:"Inventory X",colour:"#0084d6"},{key:"hedge",label:"Cumulative hedge Q",colour:"#ef6c00"},{key:"inflow",label:"Inflow Z",colour:"#009e73"}],"Quantity",3);
+    plot($("toxicity-chart"),[{key:"theta",label:"Toxicity θ",colour:"#0084d6"},{key:"estimate",label:"Estimate θ̂",colour:"#ef6c00",dashed:true}],"Toxicity",3);
+    plot($("price-chart"),[{key:"price",label:"Unaffected price P",colour:"#0084d6"},{key:"impacted",label:"Impacted price P + Y",colour:"#ef6c00"}],"Price",4);
     const t=state.index*M.dt;
     $("session").textContent="Simulation "+session+" · "+t.toFixed(2)+" / 1 trading day";
     $("inventory").textContent="X = "+state.inventory.toFixed(3);
