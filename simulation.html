@@ -436,7 +436,7 @@
       <section class="model-demo" id="simulation" role="tabpanel" aria-labelledby="choose-dealers">
         <div class="sim-heading">
           <h2 id="simulation-heading">Competition in Dealer Markets</h2>
-          <p class="sim-credit"><em>A model from a joint work with Eyal Neuman</em><a class="sim-paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6844540">Read the paper ↗</a></p>
+          <p class="sim-credit"><em>A model from a joint work with <a href="https://eyaln13.wixsite.com/eyal-neuman">Eyal Neuman</a></em><a class="sim-paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6844540">Read the paper ↗</a></p>
           <p>Three dealers compete for client flow, manage their inventories and trade in the external market.</p>
         </div>
         <div class="sim-panel">
@@ -521,7 +521,7 @@
       <section class="model-demo" id="exogenous-simulation" role="tabpanel" aria-labelledby="choose-exogenous" hidden>
         <div class="sim-heading">
           <h2 id="exogenous-heading">Market Making with Exogenous Competition</h2>
-          <p class="sim-credit"><em>A model from joint work with Martin Herdegen and Leandro Sánchez-Betancourt, published in <a href="https://doi.org/10.1137/24M1679811">SIAM Journal on Financial Mathematics</a></em><a class="sim-paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4904510">Read the paper ↗</a></p>
+          <p class="sim-credit"><em>A model from joint work with Martin Herdegen and <a href="https://leandro-sbetancourt.github.io/index.html">Leandro Sánchez-Betancourt</a>, published in <a href="https://doi.org/10.1137/24M1679811">SIAM Journal on Financial Mathematics</a></em><a class="sim-paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4904510">Read the paper ↗</a></p>
           <p>A reference market maker optimises its quotes against a competitor whose quotes follow an inventory rule.</p>
         </div>
         <div class="sim-panel">
@@ -567,7 +567,7 @@
           <div class="exo-charts">
             <div class="sim-plot">
               <div class="sim-plot-head"><h3>Inventory</h3><output class="sim-readout" id="exo-inventory" aria-live="off">0 / 0</output></div>
-              <div class="sim-legend"><span class="sim-key" style="--dealer:#087f7b">Reference MM</span><span class="sim-key" style="--dealer:#c14e42">Pooled competition</span></div>
+              <div class="sim-legend"><span class="sim-key" style="--dealer:#006bd6">Reference MM</span><span class="sim-key" style="--dealer:#d52b35">Pooled competition</span></div>
               <canvas id="exo-inventory-chart" class="sim-chart" role="img" aria-label="Inventory paths for the Reference MM and pooled competition">Inventory paths. Current values appear above this chart.</canvas>
             </div>
             <div class="sim-plot">
@@ -608,12 +608,12 @@
       <section class="model-demo" id="fx-simulation" role="tabpanel" aria-labelledby="choose-fx" hidden>
         <div class="sim-heading">
           <h2>FX Market Making with Internal Liquidity</h2>
-          <p class="sim-credit"><em>A model from joint work with Alexander Barzykin and Eyal Neuman, published in <a href="https://www.risk.net/cutting-edge/7963389/fx-market-making-with-internal-liquidity">Risk Cutting Edge</a></em><a class="sim-paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5859484">Read the paper ↗</a></p>
+          <p class="sim-credit"><em>A model from joint work with Alexander Barzykin and <a href="https://eyaln13.wixsite.com/eyal-neuman">Eyal Neuman</a>, published in <a href="https://www.risk.net/cutting-edge/7963389/fx-market-making-with-internal-liquidity">Risk Cutting Edge</a></em><a class="sim-paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5859484">Read the paper ↗</a></p>
           <p>A dealer streams prices to OTC clients and chooses when to trade with an internal client’s order.</p>
         </div>
         <div class="sim-panel">
           <div class="sim-toolbar">
-            <span class="sim-session" id="fx-session">Run 1 · 0 / 300 s</span>
+            <span class="sim-session" id="fx-session">Simulation 1 · 0 / 300 s</span>
             <div class="sim-actions">
               <button id="fx-pause" type="button">Pause</button><button id="fx-restart" type="button">Reset</button><button id="fx-reset-parameters" type="button">Reset parameters</button>
               <select id="fx-length" aria-label="Simulation length"><option value="60">1 minute</option><option value="300" selected>5 minutes</option><option value="600">10 minutes</option></select>
@@ -692,7 +692,7 @@
               <canvas class="sim-chart" id="fx-flow-chart" role="img" aria-label="Cumulative net OTC client purchases in millions, excluding internal trades">Net OTC order flow.</canvas>
             </div>
           </div>
-          <p class="sim-status" id="fx-status" role="status">Playing. Each run resets at 300 simulated seconds.</p>
+          <p class="sim-status" id="fx-status" role="status">Playing. Each simulation resets at 300 simulated seconds.</p>
           <noscript><p>This interactive simulation requires JavaScript.</p></noscript>
         </div>
         <section class="sim-method" aria-labelledby="fx-explanation-heading">
@@ -732,12 +732,12 @@
       <section class="model-demo" id="passive-simulation" role="tabpanel" aria-labelledby="choose-passive" hidden>
         <div class="sim-heading">
           <h2>Execution with Passive Impact</h2>
-          <p class="sim-credit"><em>A model from joint work with Alexander Barzykin, Eyal Neuman and Sturmius Tuschmann</em><a class="sim-paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7147361">Read the paper ↗</a></p>
+          <p class="sim-credit"><em>A model from joint work with Alexander Barzykin, <a href="https://eyaln13.wixsite.com/eyal-neuman">Eyal Neuman</a> and <a href="https://tuschmann.github.io/start">Sturmius Tuschmann</a></em><a class="sim-paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7147361">Read the paper ↗</a></p>
           <p>A trader sells through limit orders, balancing execution speed, inventory costs and the price impact of its quotes.</p>
         </div>
         <div class="sim-panel">
           <div class="sim-toolbar">
-            <span class="sim-session" id="passive-session">Run 1 · 0 / 300 s</span>
+            <span class="sim-session" id="passive-session">Simulation 1 · 0 / 300 s</span>
             <div class="sim-actions">
               <button id="passive-pause" type="button">Pause</button><button id="passive-restart" type="button">Reset</button><button id="passive-reset-parameters" type="button">Reset parameters</button>
               <select id="passive-speed" aria-label="Passive impact playback speed"><option value=".5">0.5× speed</option><option value="1" selected>1× speed</option><option value="2">2× speed</option><option value="4">4× speed</option></select>
@@ -771,7 +771,7 @@
               <canvas class="sim-chart" id="passive-shortfall-chart" role="img" aria-label="Initial price minus the average fill price, in dollars per share. Undefined before the first fill. Positive values mean worse execution.">Implementation shortfall.</canvas>
             </div>
           </div>
-          <p class="sim-status" id="passive-status" role="status">Playing. Each run starts with 20 units and lasts 300 simulated seconds.</p>
+          <p class="sim-status" id="passive-status" role="status">Playing. Each simulation starts with 20 units and lasts 300 simulated seconds.</p>
           <noscript><p>This interactive simulation requires JavaScript.</p></noscript>
         </div>
         <section class="sim-method" aria-labelledby="passive-explanation-heading">
@@ -808,11 +808,11 @@
 <section class="model-demo" id="toxic-simulation" role="tabpanel" aria-labelledby="choose-toxic" hidden>
 <div class="sim-heading">
 <h2>Unwinding Toxic Flow</h2>
-<p class="sim-credit"><em>A model from joint work with Alexander Barzykin and Eyal Neuman</em><a class="sim-paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4885957">Read the paper ↗</a></p>
+<p class="sim-credit"><em>A model from joint work with Alexander Barzykin and <a href="https://eyaln13.wixsite.com/eyal-neuman">Eyal Neuman</a></em><a class="sim-paper" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4885957">Read the paper ↗</a></p>
 <p>Unwinding incoming inventory when toxicity is hidden and responds to the dealer’s own trades.</p>
 </div>
 <div class="sim-panel">
-<div class="sim-toolbar"><span class="sim-session" id="toxic-session">Run 1 · 0.00 / 1 trading day</span><div class="sim-actions">
+<div class="sim-toolbar"><span class="sim-session" id="toxic-session">Simulation 1 · 0.00 / 1 trading day</span><div class="sim-actions">
 <button id="toxic-pause" type="button">Pause</button><button id="toxic-restart" type="button">Reset</button><button id="toxic-reset-parameters" type="button">Reset parameters</button>
 <select id="toxic-speed" aria-label="Toxic flow playback speed"><option value=".5">0.5× speed</option><option value="1" selected>1× speed</option><option value="2">2× speed</option><option value="4">4× speed</option></select>
 </div></div>
@@ -820,7 +820,7 @@
 <label><input type="radio" name="toxic-information" value="partial" checked> Partial information</label>
 <label><input type="radio" name="toxic-information" value="full"> Full information</label>
 </fieldset>
-<p class="sim-caption" id="toxic-information-note">The strategy uses estimated toxicity. Switching information restarts the run with the same random shocks.</p>
+<p class="sim-caption" id="toxic-information-note">The strategy uses estimated toxicity. Switching information restarts the simulation with the same random shocks.</p>
 <div class="sim-controls" role="group" aria-label="Toxic flow model parameters"><div class="sim-control"><label for="toxic-a">Toxicity reversion or momentum a<output id="toxic-a-value" for="toxic-a">-0.40</output></label><input id="toxic-a" data-param="a" type="range" min="-1" max="1" step="0.1" value="-0.4" aria-valuetext="-0.40"></div>
 <div class="sim-control"><label for="toxic-b">Feedback from hedging b<output id="toxic-b-value" for="toxic-b">-0.25</output></label><input id="toxic-b" data-param="b" type="range" min="-0.5" max="0.5" step="0.05" value="-0.25" aria-valuetext="-0.25"></div>
 <div class="sim-control"><label for="toxic-c">Signal coupling c<output id="toxic-c-value" for="toxic-c">0.00</output></label><input id="toxic-c" data-param="c" type="range" min="-1" max="0" step="0.01" value="0" aria-valuetext="0.00"></div>
@@ -834,16 +834,16 @@
 <div class="sim-control"><label for="toxic-alpha">Terminal inventory penalty α<output id="toxic-alpha-value" for="toxic-alpha">100</output></label><input id="toxic-alpha" data-param="alpha" type="range" min="10" max="300" step="10" value="100" aria-valuetext="100"></div></div>
 <div class="toxic-charts">
 <div class="sim-plot"><div class="sim-plot-head"><h3>Inventory, hedge and inflow</h3><output class="sim-readout" id="toxic-inventory">X = 0.000</output></div>
-<div class="sim-legend"><span class="sim-key" style="--dealer:#0072b2">Inventory X</span><span class="sim-key" style="--dealer:#d55e00">Cumulative hedge Q</span><span class="sim-key" style="--dealer:#00856a">Inflow Z</span></div>
+<div class="sim-legend"><span class="sim-key" style="--dealer:#0084d6">Inventory X</span><span class="sim-key" style="--dealer:#ef6c00">Cumulative hedge Q</span><span class="sim-key" style="--dealer:#009e73">Inflow Z</span></div>
 <canvas class="sim-chart" id="toxic-inventory-chart" role="img" aria-label="Inventory X, cumulative hedge Q and cumulative inflow Z over time">Inventory, cumulative hedge and inflow.</canvas></div>
 <div class="sim-plot"><div class="sim-plot-head"><h3>Toxicity and its estimate</h3><output class="sim-readout" id="toxic-toxicity">θ = 0.100</output></div>
-<div class="sim-legend"><span class="sim-key" style="--dealer:#0072b2">Toxicity θ</span><span class="sim-key toxic-estimate-key" style="--dealer:#d55e00">Estimate θ̂</span></div>
+<div class="sim-legend"><span class="sim-key" style="--dealer:#0084d6">Toxicity θ</span><span class="sim-key toxic-estimate-key" style="--dealer:#ef6c00">Estimate θ̂</span></div>
 <canvas class="sim-chart" id="toxic-toxicity-chart" role="img" aria-label="True toxicity theta and estimated toxicity theta hat, coinciding under full information">Toxicity and its estimate.</canvas></div>
 <div class="sim-plot"><div class="sim-plot-head"><h3>Unaffected and impacted prices</h3><output class="sim-readout" id="toxic-price">1.0000</output></div>
-<div class="sim-legend"><span class="sim-key" style="--dealer:#0072b2">Unaffected price P</span><span class="sim-key" style="--dealer:#d55e00">Impacted price P + Y</span></div>
+<div class="sim-legend"><span class="sim-key" style="--dealer:#0084d6">Unaffected price P</span><span class="sim-key" style="--dealer:#ef6c00">Impacted price P + Y</span></div>
 <canvas class="sim-chart" id="toxic-price-chart" role="img" aria-label="Unaffected price P and price with transient impact P plus Y">Unaffected and impacted prices.</canvas></div>
 </div>
-<p class="sim-status" id="toxic-status" role="status">Playing. Each run lasts one trading day.</p>
+<p class="sim-status" id="toxic-status" role="status">Playing. Each simulation lasts one trading day.</p>
 <noscript><p>This interactive simulation requires JavaScript.</p></noscript>
 </div>
 
@@ -1445,7 +1445,7 @@ const CompetitionModel = (() => {
   let resetDeadline=Date.now()+resetInterval,resetTimer;
   const status = document.querySelector("#exo-status");
   const pauseButton = document.querySelector("#exo-pause");
-  const referenceColor = "#087f7b", competitorColor = "#c14e42", grid = "#e2e6df", muted = "#626e69";
+  const referenceColor = "#006bd6", competitorColor = "#d52b35", grid = "#e2e6df", muted = "#626e69";
   const canvases = [...root.querySelectorAll("canvas")];
 
   function setStatus(message) { status.textContent = message; }
@@ -1997,11 +1997,11 @@ const FXDepthCharts=(()=>{
   const $=id=>root.querySelector("#fx-"+id);
   const depths=FXDepthCharts.create(root,$,prepare);
   function message(text){status.textContent=text;}
-  function runMessage(){return "Each run resets at "+runLength+" simulated seconds.";}
+  function runMessage(){return "Each simulation resets at "+runLength+" simulated seconds.";}
   function pauseLabel(){pauseButton.textContent=paused?"Play":"Pause";}
   function restart(automatic=false){
     state=M.createState(params,policy,seed());session++;credit=0;lastFrame=null;dirty=true;
-    message((paused?"Paused. ":"Playing. ")+(automatic?"New "+runLength+" second run. Selected parameters preserved.":"New internal order and price path. "+runMessage()));
+    message((paused?"Paused. ":"Playing. ")+(automatic?"New "+runLength+" second simulation. Selected parameters preserved.":"New internal order and price path. "+runMessage()));
   }
   function initialise(){
     if(state||updating)return;
@@ -2113,8 +2113,8 @@ const FXDepthCharts=(()=>{
     if(!view)return;
     const {ctx,x}=view;ctx.save();ctx.beginPath();ctx.rect(view.left,view.top,view.width-view.left-view.right,view.height-view.top-view.bottom);ctx.clip();
     for(const event of state.events){
-      const xx=x(event.t);ctx.strokeStyle="rgba(57,131,60,.22)";ctx.setLineDash([2,4]);ctx.beginPath();ctx.moveTo(xx,view.top);ctx.lineTo(xx,view.height-view.bottom);ctx.stroke();ctx.setLineDash([]);
-      ctx.fillStyle="#39833c";ctx.beginPath();ctx.moveTo(xx,view.top+5);ctx.lineTo(xx-3,view.top);ctx.lineTo(xx+3,view.top);ctx.closePath();ctx.fill();
+      const xx=x(event.t);ctx.strokeStyle="rgba(66,184,25,.32)";ctx.setLineDash([2,4]);ctx.beginPath();ctx.moveTo(xx,view.top);ctx.lineTo(xx,view.height-view.bottom);ctx.stroke();ctx.setLineDash([]);
+      ctx.fillStyle="#42b819";ctx.beginPath();ctx.moveTo(xx,view.top+5);ctx.lineTo(xx-3,view.top);ctx.lineTo(xx+3,view.top);ctx.closePath();ctx.fill();
     }
     ctx.restore();
   }
@@ -2124,12 +2124,12 @@ const FXDepthCharts=(()=>{
     const asks=["#9e1830","#d44859","#ec939c"],bids=["#005c91","#3688b8","#69a9c8"];
     for(let j=2;j>=0;j--){curve(prices,"ask"+j,asks[j],false,j?1.4:1.9);curve(prices,"bid"+j,bids[j],false,j?1.4:1.9);}
     curve(prices,"mid","#172b4d",false,1.8);
-    curve(axis($("inventory-chart"),["q"],{integer:true}),"q","#bd3e46",true);
-    curve(axis($("pnl-chart"),["pnl"]),"pnl","#0072b2");
-    const liquidity=axis($("liquidity-chart"),["l"],{fixed:[0,1.1]});internalMarks(liquidity);curve(liquidity,"l","#39833c",true);
+    curve(axis($("inventory-chart"),["q"],{integer:true}),"q","#e03b46",true);
+    curve(axis($("pnl-chart"),["pnl"]),"pnl","#0084d6");
+    const liquidity=axis($("liquidity-chart"),["l"],{fixed:[0,1.1]});internalMarks(liquidity);curve(liquidity,"l","#42b819",true);
     curve(axis($("flow-chart"),["flow"],{integer:true}),"flow","#281238",true);
     const last=state.points[state.points.length-1];
-    $("session").textContent="Run "+session+" · "+state.t.toFixed(0)+" / "+runLength+" s";
+    $("session").textContent="Simulation "+session+" · "+state.t.toFixed(0)+" / "+runLength+" s";
     $("mid").textContent=state.mid.toFixed(5);$("inventory").textContent=state.q+" million";
     $("pnl").textContent=(last.pnl<0?"−$":"$")+Math.abs(last.pnl).toFixed(2)+"k";
     $("liquidity").textContent=state.l+" million";$("flow-readout").textContent=last.flow+" million";
@@ -2391,7 +2391,7 @@ const PassiveModel=(()=>{
   function message(text){status.textContent=text;}
   function restart(automatic=false){
     state=M.createState(policy,seed());session++;credit=0;lastFrame=null;finishedAt=null;dirty=true;
-    message((paused?"Paused. ":"Playing. ")+(automatic?"New 300 second execution. ":"")+"Each run starts with 20 units and resets after 300 simulated seconds.");
+    message((paused?"Paused. ":"Playing. ")+(automatic?"New 300 second execution. ":"")+"Each simulation starts with 20 units and resets after 300 simulated seconds.");
   }
   function depthData(next){
     let low=Infinity,high=-Infinity;
@@ -2419,7 +2419,7 @@ const PassiveModel=(()=>{
     setTimeout(()=>{
       try{
         policy=M.solvePolicy(params);updateDepths(policy);state=M.createState(policy,seed());dirty=true;
-        message(paused?"Paused. Press Play to start.":"Playing. Each run lasts 300 simulated seconds.");
+        message(paused?"Paused. Press Play to start.":"Playing. Each simulation lasts 300 simulated seconds.");
       }catch(error){paused=true;message("The model could not start. "+error.message);}
       updating=false;root.setAttribute("aria-busy","false");lastFrame=null;pauseLabel();render();
     },0);
@@ -2543,10 +2543,10 @@ const PassiveModel=(()=>{
     renderDepths();
     const prices=processAxis($("price-chart"),["unaffected","mid","quote"],{yLabel:"Price ($/share)"});
     fillMarks(prices);curve(prices,"unaffected","#4c78a8");curve(prices,"mid","#d55e00");curve(prices,"quote","#6f4e7c");
-    curve(processAxis($("inventory-chart"),["q"],{fixed:[0,M.initialInventory],digits:0,yLabel:"Inventory (units)"}),"q","#bd3e46",true);
-    curve(processAxis($("shortfall-chart"),["shortfall"],{padding:.005,yLabel:"Shortfall ($/share)"}),"shortfall","#0072b2",true);
+    curve(processAxis($("inventory-chart"),["q"],{fixed:[0,M.initialInventory],digits:0,yLabel:"Inventory (units)"}),"q","#e03b46",true);
+    curve(processAxis($("shortfall-chart"),["shortfall"],{padding:.005,yLabel:"Shortfall ($/share)"}),"shortfall","#0084d6",true);
     const last=state.points[state.points.length-1];
-    $("session").textContent="Run "+session+" · "+state.t.toFixed(0)+" / 300 s";
+    $("session").textContent="Simulation "+session+" · "+state.t.toFixed(0)+" / 300 s";
     $("mid").textContent="$"+last.mid.toFixed(3);
     $("inventory").textContent=state.q+" / 20 units";
     $("shortfall").textContent=Number.isFinite(last.shortfall)?(last.shortfall<0?"−$":"$")+Math.abs(last.shortfall).toFixed(4):"Awaiting first fill";
@@ -2566,7 +2566,7 @@ const PassiveModel=(()=>{
     const elapsed=lastFrame===null?0:Math.min(.1,(timestamp-lastFrame)/1000);lastFrame=timestamp;
     if(state&&!paused&&!updating&&visible&&!root.hidden&&!document.hidden){
       if(state.t>=M.horizon-1e-8){
-        if(finishedAt===null){finishedAt=timestamp;message("Run complete. "+state.q+" units remaining. A new run starts shortly.");}
+        if(finishedAt===null){finishedAt=timestamp;message("Simulation complete. "+state.q+" units remaining. A new simulation starts shortly.");}
         else if(timestamp-finishedAt>=1200)restart(true);
       }else{
         credit+=elapsed*speed*5;
@@ -2750,13 +2750,13 @@ const ToxicModel=(()=>{
   function restart(sameShocks=false){
     if(!sameShocks)runSeed=seed();
     state=M.createState(runSeed,mode);session++;credit=0;lastFrame=null;finishedAt=null;dirty=true;
-    message((paused?"Paused. ":"Playing. ")+(mode==="partial"?"Partial information. ":"Full information. ")+(sameShocks?"Restarted with the same random shocks.":"Each run lasts one trading day."));
+    message((paused?"Paused. ":"Playing. ")+(mode==="partial"?"Partial information. ":"Full information. ")+(sameShocks?"Restarted with the same random shocks.":"Each simulation lasts one trading day."));
   }
   function initialise(){
     if(state||updating)return;
     updating=true;root.setAttribute("aria-busy","true");message("Preparing the unwind strategy…");
     setTimeout(()=>{
-      try{policy=M.solvePolicy(params);state=M.createState(runSeed,mode);dirty=true;message(paused?"Paused. Press Play to start.":"Playing. Each run lasts one trading day.");}
+      try{policy=M.solvePolicy(params);state=M.createState(runSeed,mode);dirty=true;message(paused?"Paused. Press Play to start.":"Playing. Each simulation lasts one trading day.");}
       catch(error){paused=true;message("The model could not start. "+error.message);}
       updating=false;root.setAttribute("aria-busy","false");lastFrame=null;pauseLabel();render();
     },0);
@@ -2793,8 +2793,8 @@ const ToxicModel=(()=>{
   root.querySelectorAll('input[name="toxic-information"]').forEach(input=>input.addEventListener("change",()=>{
     if(!input.checked)return;mode=input.value;
     $("information-note").textContent=mode==="partial"?
-      "The strategy uses estimated toxicity. Switching information restarts the run with the same random shocks.":
-      "Toxicity is observed, so θ̂ = θ and the curves coincide. Switching information restarts the run with the same random shocks.";
+      "The strategy uses estimated toxicity. Switching information restarts the simulation with the same random shocks.":
+      "Toxicity is observed, so θ̂ = θ and the curves coincide. Switching information restarts the simulation with the same random shocks.";
     if(policy){restart(true);render();}
   }));
   pauseButton.addEventListener("click",()=>{paused=!paused;lastFrame=null;finishedAt=null;pauseLabel();message(paused?"Paused.":"Playing.");dirty=true;render();});
@@ -2839,11 +2839,11 @@ const ToxicModel=(()=>{
   }
   function render(){
     if(!state||root.hidden)return;
-    plot($("inventory-chart"),[{key:"inventory",colour:"#0072b2"},{key:"hedge",colour:"#d55e00"},{key:"inflow",colour:"#00856a"}],"Quantity",3);
-    plot($("toxicity-chart"),[{key:"theta",colour:"#0072b2"},{key:"estimate",colour:"#d55e00",dashed:true}],"Toxicity",3);
-    plot($("price-chart"),[{key:"price",colour:"#0072b2"},{key:"impacted",colour:"#d55e00"}],"Price",4);
+    plot($("inventory-chart"),[{key:"inventory",colour:"#0084d6"},{key:"hedge",colour:"#ef6c00"},{key:"inflow",colour:"#009e73"}],"Quantity",3);
+    plot($("toxicity-chart"),[{key:"theta",colour:"#0084d6"},{key:"estimate",colour:"#ef6c00",dashed:true}],"Toxicity",3);
+    plot($("price-chart"),[{key:"price",colour:"#0084d6"},{key:"impacted",colour:"#ef6c00"}],"Price",4);
     const t=state.index*M.dt;
-    $("session").textContent="Run "+session+" · "+t.toFixed(2)+" / 1 trading day";
+    $("session").textContent="Simulation "+session+" · "+t.toFixed(2)+" / 1 trading day";
     $("inventory").textContent="X = "+state.inventory.toFixed(3);
     $("toxicity").textContent="θ = "+state.theta.toFixed(3);
     $("price").textContent=(state.price+state.impact).toFixed(4);
@@ -2863,7 +2863,7 @@ const ToxicModel=(()=>{
     const elapsed=lastFrame===null?0:Math.min(.1,(timestamp-lastFrame)/1000);lastFrame=timestamp;
     if(state&&!paused&&!updating&&visible&&!root.hidden&&!document.hidden){
       if(state.index>=M.steps){
-        if(finishedAt===null){finishedAt=timestamp;message("Trading day complete. A new run starts shortly.");}
+        if(finishedAt===null){finishedAt=timestamp;message("Trading day complete. A new simulation starts shortly.");}
         else if(timestamp-finishedAt>=1200)restart();
       }else{
         credit+=elapsed*speed/60;
